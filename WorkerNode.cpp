@@ -35,7 +35,7 @@ void WorkerNode::setNext(WorkerNode* nextWorker) {
      */
 }
 
-void WorkerNode::setCar(Car* car) {
+void WorkerNode::setCar(CarNode* car) {
     /*
      * call spot node checkIn function with car
      */
@@ -45,6 +45,6 @@ void WorkerNode::carCheckOut(string name, string spot) {
     // Call spot node checkCar function
 }
 
-Car* WorkerNode::returnToClient(Car* carToReturn) {
+CarNode* WorkerNode::returnToClient(CarNode* carToReturn) {
     // Give client the car, then delete
 }

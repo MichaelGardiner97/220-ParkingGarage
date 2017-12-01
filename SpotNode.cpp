@@ -1,9 +1,10 @@
 //
 // Created by Derek Howes on 11/30/17.
 //
+#include "iostream"
 #include "SpotNode.h"
 
-void CarNode::checkoutCar(std::string name){
+void SpotNode::checkoutCar(std::string name){
     //check if this->taken = false
 
     //else if check name
@@ -12,7 +13,7 @@ void CarNode::checkoutCar(std::string name){
 
 }
 
-void CarNode::checkinCar(carNode:: carNode* car){
+void SpotNode::checkinCar(CarNode* car){
     //vehicle ptr = car
 }
 

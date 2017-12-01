@@ -6,7 +6,7 @@
 #define TEST_WORKERNODE_H
 
 #include "iostream"
-#include "Car.h"
+#include "CarNode.h"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ class WorkerNode {
 private:
     string name;
     bool available;
-    Car* car;
+    CarNode* car;
     WorkerNode* next;
 
 public:
@@ -25,10 +25,10 @@ public:
     ~WorkerNode();
     WorkerNode* getNext();
     void setNext(WorkerNode* nextWorker);
-    void setCar(Car* car);
+    void setCar(CarNode* car);
     void carCheckIn();
     void carCheckOut(string name, string spot);
-    Car* returnToClient(Car* carToReturn);
+    CarNode* returnToClient(CarNode* carToReturn);
 };
 
 

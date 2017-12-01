@@ -7,6 +7,9 @@
 
 #endif //TERMPROJECT_SPOTNODE_H
 
+#include "iostream"
+#include "CarNode.h"
+
 class SpotNode{
 private:
     int vehicleType;
@@ -17,6 +20,6 @@ private:
 public:
     void checkoutCar(std::string name);
     //does all the checks
-    void checkinCar(CarNode Car);
+    void checkinCar(CarNode* Car);
     //moves pointer to car
 };

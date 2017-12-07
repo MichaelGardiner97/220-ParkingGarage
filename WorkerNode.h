@@ -22,9 +22,10 @@ private:
 
 public:
 
-    WorkerNode(string name);
+    WorkerNode(string name, int id, string pass);
     WorkerNode(const WorkerNode& nodeToCopy);
     WorkerNode* getNext();
+    int getID();
     void setNext(WorkerNode* nextWorker);
     void setCar(CarNode* newCar);
     void carCheckOut(CarNode* carIn);

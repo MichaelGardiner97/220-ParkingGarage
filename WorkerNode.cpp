@@ -4,8 +4,10 @@
 
 #include "WorkerNode.h"
 
-WorkerNode::WorkerNode(string name) {
+WorkerNode::WorkerNode(string name,int Id, string pass) {
     name = name;
+    ID = Id;
+    password = pass;
     available = true;
     car = nullptr;
     next = nullptr;
@@ -25,6 +27,9 @@ WorkerNode* WorkerNode::getNext() {
 void WorkerNode::setNext(WorkerNode* nextWorker) {
     next = nextWorker;
 }
+int WorkerNode::getID() {
+    return ID;
+}
 
 void WorkerNode::setCar(CarNode* newCar) {
     car = newCar;
@@ -43,4 +48,4 @@ void WorkerNode::returnToClient(CarNode* carIn) {
     car = nullptr;
     next = nullptr;
 }
-
+}

@@ -30,10 +30,17 @@ void WorkerNode::setCar(CarNode* newCar) {
     car = newCar;
 }
 
-void WorkerNode::carCheckOut(string name, string spot) {
-    // Call spot node checkCar function
+void WorkerNode::carCheckOut(CarNode* carIn) {
+    available = false;
+    car = carIn;
+
 }
 
-CarNode* WorkerNode::returnToClient(CarNode* carToReturn) {
-    // Give client the car, then delete
+void WorkerNode::returnToClient(CarNode* carIn) {
+    std::cout<<carIn.printInfo()<<std::endl;
+    available = true;
+    delete car;
+    car = nullptr;
+    next = nullptr;
 }
+

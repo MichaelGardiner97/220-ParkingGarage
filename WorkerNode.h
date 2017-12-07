@@ -17,6 +17,8 @@ private:
     bool available;
     CarNode* car;
     WorkerNode* next;
+    int ID;
+    string password;
 
 public:
 
@@ -25,8 +27,9 @@ public:
     WorkerNode* getNext();
     void setNext(WorkerNode* nextWorker);
     void setCar(CarNode* newCar);
-    void carCheckOut(string name, string spot);
-    CarNode* returnToClient(CarNode* carToReturn);
+    void carCheckOut(CarNode* carIn);
+    void returnToClient(CarNode* carIn);
+
 };
 
 #endif //TEST_WORKERNODE_H

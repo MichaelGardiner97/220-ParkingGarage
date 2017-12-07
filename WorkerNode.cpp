@@ -5,40 +5,29 @@
 #include "WorkerNode.h"
 
 WorkerNode::WorkerNode(string name) {
-    /*
-     * initialize worker node with name and sets available to true
-     */
+    name = name;
+    available = true;
+    car = nullptr;
+    next = nullptr;
 }
 
 WorkerNode::WorkerNode(const WorkerNode& nodeToCopy) {
-    /*
-     * copies worker from total list to currentWorkers list
-     */
-}
-
-WorkerNode::~WorkerNode() {
-    /*
-     * setting current car node to nullptr
-     */
+    name = nodeToCopy.name;
+    available = nodeToCopy.available;
+    car = nullptr;
+    next = nullptr;
 }
 
 WorkerNode* WorkerNode::getNext() {
-    /*
-     * return the next worker node
-     */
-    return nullptr;
+    return next;
 }
 
 void WorkerNode::setNext(WorkerNode* nextWorker) {
-    /*
-     * set the next worker node in the linkedlist
-     */
+    next = nextWorker;
 }
 
-void WorkerNode::setCar(CarNode* car) {
-    /*
-     * call spot node checkIn function with car
-     */
+void WorkerNode::setCar(CarNode* newCar) {
+    car = newCar;
 }
 
 void WorkerNode::carCheckOut(string name, string spot) {

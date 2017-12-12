@@ -37,11 +37,15 @@ int main() {
 
         } else if ((input == 'l') || (input == 'L')) {
 
-            cout << "The following spots are open to choose from: " << endl;
+            cout << "Total List of Spots:" << endl;
+            cout << "Floor" << "\tSpot #" << "\tOpen" << "\tCar Information" << endl;
             for (int i = 1; i < 4; ++i) {
                 for (int j = 1; j < 11; ++j) {
                     if ((mySpots[i][j] == nullptr) || !(mySpots[i][j]->isTaken())) {
-                        cout << "floor: " << i << "\tspace: " << j << endl;
+                        cout << i << "\t\t" << j << "\t\tYes" << "\t\tNo Car Parked" << endl;
+                    } else {
+                        string carInfo = mySpots[i][j]->getCarInfo();
+                        cout << i << "\t\t" << j << "\t\tNo" << "\t\t" << carInfo << endl;
                     }
                 }
             }
@@ -59,13 +63,14 @@ int main() {
             string model;
             cin >> model;
             cout << "Please enter the year of your car: " << endl;
-            int year;
+            string year;
             cin >> year;
             cout << "Please enter how many days you would like to reserve your car for: " << endl;
             int resvTime;
             cin >> resvTime;
 
             CarNode* myCar = new CarNode(name, make, model, year);
+            cout << myCar->toString() << endl;
 
             /*
             cout << "Please enter the floor you would like to park your car: " << endl;

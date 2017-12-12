@@ -18,7 +18,6 @@ void SpotNode::checkoutCar(string name){
         if (name == currentOwner) {
             // THE CAR IN THE SPOT BELONGS TO THE OWNER, RETURN AND SET VEHICLE TO NULLPTR
             cout << "Thank you for parking your car with us, we hope you return soon!" << endl;
-            delete vehicle;
             vehicle = nullptr;
             taken = false;
         } else {
@@ -40,8 +39,8 @@ void SpotNode::checkinCar(CarNode* car, int type, int resvTime) {
     }
 }
 
-void SpotNode::getCarInfo() {
-    vehicle->toString();
+string SpotNode::getCarInfo() {
+    return vehicle->toString();
 }
 
 bool SpotNode::isTaken() {

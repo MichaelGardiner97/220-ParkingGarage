@@ -4,8 +4,8 @@
 #include <iostream>
 #include "CarNode.h"
 using namespace std;
-// Hello people
-CarNode::CarNode(std::string ownerIn, std::string makeIn, std::string modelIn, int yearIn) {
+
+CarNode::CarNode(string ownerIn, string makeIn, string modelIn, string yearIn) {
     owner = ownerIn;
     make = makeIn;
     model = modelIn;
@@ -25,7 +25,12 @@ CarNode::CarNode(const CarNode &carToCopy) {
     ResvEnd = carToCopy.ResvEnd;
 }
 
-void CarNode::toString() {
+string CarNode::toString() {
+    string returnStr = "Owner: " + owner + " - Make: " + make + " - Model: " + model + " - Year: " + year;
+    return returnStr;
+}
+
+void CarNode::printInfo() {
     cout << "Owner: " << owner << endl;
     cout << "Make: " << make << endl;
     cout << "Model: " << model << endl;

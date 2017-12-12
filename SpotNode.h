@@ -24,6 +24,6 @@ public:
     //does all the checks
     void checkinCar(CarNode* Car, int type, int resvTime);
     //moves pointer to car
-    void getCarInfo();
+    string getCarInfo();
     bool isTaken();
 };

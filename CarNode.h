@@ -9,15 +9,15 @@ using namespace std;
 
 class CarNode {
 private:
-    std::string owner;
-    std::string make;
-    std::string model;
-    int year;
+    string owner;
+    string make;
+    string model;
+    string year;
     bool IsCharged;
     float ResvStart;
     float ResvEnd;
 public:
-    CarNode(std::string ownerIn,std::string makeIn, std::string modelIn, int yearIn);
+    CarNode(string ownerIn, string makeIn, string modelIn, string yearIn);
     CarNode(const CarNode& carToCopy);
     CarNode& operator=(const CarNode& carToCopy);
     float getResvStart();
@@ -27,7 +27,8 @@ public:
     void setIsCharged();
     void setResvStart(float start);
     void setResvEnd(float end);
-    void toString();
+    string toString();
+    void printInfo();
 };
 
 #endif //PARKINGGARAGE_CAR_H

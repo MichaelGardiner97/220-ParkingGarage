@@ -4,47 +4,53 @@
 
 #include "WorkerNode.h"
 
-WorkerNode::WorkerNode(string name) {
-    /*
-     * initialize worker node with name and sets available to true
-     */
+WorkerNode::WorkerNode(string nameIn,std::string Id, string pass) {
+    name = nameIn;
+    ID = Id;
+    password = pass;
+    available = true;
+    car = nullptr;
+    next = nullptr;
 }
 
 WorkerNode::WorkerNode(const WorkerNode& nodeToCopy) {
-    /*
-     * copies worker from total list to currentWorkers list
-     */
-}
-
-WorkerNode::~WorkerNode() {
-    /*
-     * setting current car node to nullptr
-     */
+    name = nodeToCopy.name;
+    available = nodeToCopy.available;
+    car = nullptr;
+    next = nullptr;
 }
 
 WorkerNode* WorkerNode::getNext() {
-    /*
-     * return the next worker node
-     */
-    return nullptr;
+    return next;
 }
 
 void WorkerNode::setNext(WorkerNode* nextWorker) {
-    /*
-     * set the next worker node in the linkedlist
-     */
+    next = nextWorker;
+}
+std::string WorkerNode::getID() {
+    return ID;
 }
 
-void WorkerNode::setCar(CarNode* car) {
-    /*
-     * call spot node checkIn function with car
-     */
+void WorkerNode::setCar(CarNode* newCar) {
+    car = newCar;
 }
 
-void WorkerNode::carCheckOut(string name, string spot) {
-    // Call spot node checkCar function
+void WorkerNode::carCheckOut(CarNode* carIn) {
+    available = false;
+    car = carIn;
+
+}
+std::string WorkerNode::getPass(){
+    return password;
+}
+std::string WorkerNode::getWorkerName(){
+    return name;
 }
 
-CarNode* WorkerNode::returnToClient(CarNode* carToReturn) {
-    // Give client the car, then delete
-}
+/*void WorkerNode::returnToClient(CarNode* carIn) {
+    std::cout<<carIn.printInfo()<<std::endl;
+    available = true;
+    delete car;
+    car = nullptr;
+    next = nullptr;
+}*/

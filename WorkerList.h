@@ -13,8 +13,9 @@ public:
     ~WorkerList();
     WorkerList(const WorkerList& listToCopy);
     void add(WorkerNode* w1);
-    void remove(int ID);
+    void remove(std::string ID);
     std::string toString();
+    WorkerNode* getFront();
 };
 
 #endif //INC_220_PARKINGGARAGE_MASTER_AVAILABLEWORKERLIST_H

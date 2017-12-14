@@ -23,7 +23,7 @@ void WorkerList::add(WorkerNode* w1){
 
 }
 
-void WorkerList:: remove(int Id) {
+void WorkerList:: remove(std::string Id) {
     if (front->getID() == Id) {
         WorkerNode *temp = front->getNext();
         delete front;
@@ -37,4 +37,19 @@ void WorkerList:: remove(int Id) {
         front = temp;
     }
 }
-std::string WorkerList::toString(){}
+WorkerNode* WorkerList::getFront() {
+    return front;
+}
+
+std::string WorkerList::toString(){
+    std::string val = "";
+    WorkerNode* tempHold = front;
+    while(tempHold!=nullptr){
+        val+=tempHold->getWorkerName();
+        if(tempHold->getNext()!=nullptr){
+            val+=", ";
+        }
+        tempHold=tempHold->getNext();
+    }
+    return val;
+}

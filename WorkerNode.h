@@ -17,19 +17,22 @@ private:
     bool available;
     CarNode* car;
     WorkerNode* next;
+    std::string ID;
+    string password;
 
 public:
 
-    WorkerNode(string name);
+    WorkerNode(string name, std::string id, string pass);
     WorkerNode(const WorkerNode& nodeToCopy);
-    ~WorkerNode();
     WorkerNode* getNext();
+    std::string getID();
+    std::string getPass();
     void setNext(WorkerNode* nextWorker);
-    void setCar(CarNode* car);
-    void carCheckIn();
-    void carCheckOut(string name, string spot);
-    CarNode* returnToClient(CarNode* carToReturn);
-};
+    void setCar(CarNode* newCar);
+    void carCheckOut(CarNode* carIn);
+    void returnToClient(CarNode* carIn);
+    std::string getWorkerName();
 
+};
 
 #endif //TEST_WORKERNODE_H

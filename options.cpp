@@ -12,8 +12,7 @@ using namespace std;
 
 void printOptions() {
     cout << endl;
-    cout << "List of commands: \n" << "H: Help Menu\n" << "P: Park Vehicle\n" << "T: Check Out Vehicle\n" << "D: Exit The Program\n" << "~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << "B: Worker Login\n" << "L: List of Open Spots\n" << "R: Make Reservation (In progress)\n" << "C: Check Reservation (In progress)\n"
-              <<"W: Check Tow List (In progress)\nM: Manager Login" << endl;
+    cout << "List of commands: \n" << "H: Help Menu\n" << "P: Park Vehicle\n" << "T: Check Out Vehicle\n" << "D: Exit The Program\n" << "B: Worker Login\n" << "L: List of Spots\n" << "W: Check Tow List\n" << "M: Manager Login\n" << "~~~~~~~~~~~~~~~~~~\n" << "R: Make Reservation (In progress)\n" << "C: Check Reservation (In progress)\n" << endl;
     cout << "Please make your selection below:" << endl;
 }
 
@@ -143,10 +142,10 @@ void managerLogin(WorkerList* avail, WorkerList* notAvail) {
         std::cout<<"What would like to do? \nA. See available workers?\nB. See workers currently parking/getting a car? ";
         std::cin>>option;
         if(option=='A' || option == 'a'){
-            avail->toString();
+            cout << avail->toString() << endl;
         }
         else if(option=='B' || option == 'b'){
-            notAvail->toString();
+            cout << notAvail->toString() << endl;
         }
     }
     printOptions();

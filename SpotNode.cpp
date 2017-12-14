@@ -13,16 +13,12 @@ SpotNode::SpotNode() {
 
 void SpotNode::checkoutCar(string name){
 
-    if (taken == true) {
-        string currentOwner = vehicle->getOwner();
-        if (name == currentOwner) {
-            // THE CAR IN THE SPOT BELONGS TO THE OWNER, RETURN AND SET VEHICLE TO NULLPTR
-            cout << "Thank you for parking your car with us, we hope you return soon!" << endl;
-            vehicle = nullptr;
-            taken = false;
-        } else {
-            cout << "Your car aint here, check the tow list" << endl;
-        }
+    string currentOwner = vehicle->getOwner();
+    if (name == currentOwner) {
+        // THE CAR IN THE SPOT BELONGS TO THE OWNER, RETURN AND SET VEHICLE TO NULLPTR
+        cout << "Thank you for parking your car with us, we hope you return soon!" << endl;
+        vehicle = nullptr;
+        taken = false;
     } else {
         cout << "Your car aint here, check the tow list" << endl;
     }
@@ -51,6 +47,10 @@ bool SpotNode::isTaken() {
     }
 }
 
-void SpotNode:: setType(int type){
+void SpotNode::setType(int type){
     vehicleType = type;
+}
+
+int SpotNode::getType() {
+    return vehicleType;
 }

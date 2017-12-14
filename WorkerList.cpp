@@ -42,6 +42,9 @@ WorkerNode* WorkerList::getFront() {
 }
 
 std::string WorkerList::toString(){
+    if (front == nullptr) {
+        return "No workers in this list";
+    }
     std::string val = "";
     WorkerNode* tempHold = front;
     while(tempHold!=nullptr){

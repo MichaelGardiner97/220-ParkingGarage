@@ -27,4 +27,5 @@ public:
     string getCarInfo();
     bool isTaken();
     void setType(int type);
+    int getType();
 };

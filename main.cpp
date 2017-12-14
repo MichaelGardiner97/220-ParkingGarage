@@ -7,12 +7,22 @@
 #include "options.h"
 #include "WorkerList.h"
 #include "WorkerNode.h"
+#include "TowNode.h"
+#include "TowList.h"
+
 using namespace std;
 
 // Check input type to avoid crashes
 
-// Tow List and Implementations
+// ON START OF PROGRAM checjk eternal clock and go through each spot and move to tow list when necessary
+// Move to tow list function
 // Clean out cars we need to get towed
+
+// Ask Toby about taking out more than first car problem
+
+// Change worker login to just print error instead of throw error
+
+//MAYBE: WAITLIST
 
 void readFile(string* name, string* id, string* pw, string* x, string* y, WorkerList* availableList) {
 
@@ -75,7 +85,8 @@ void readFile(string* name, string* id, string* pw, string* x, string* y, Worker
 int main() {
 
     WorkerList* availableList = new WorkerList();
-    WorkerList* notAvailableList;
+    WorkerList* notAvailableList = new WorkerList();
+    TowList* towList = new TowList();
 
     string name;
     string id;
@@ -89,19 +100,23 @@ int main() {
     int intX = stoi(x);
     int intY = stoi(y);
 
+    cout << intX << "x" << intY << endl;
+
     SpotNode* mySpots[intX][intY];
-    for (int k = 1; k < intX+1; ++k) {
-        for (int i = 1; i < intY+1; ++i) {
-            mySpots[k][i] = nullptr;
+    for (int k = 0; k < intX; ++k) {
+        for (int i = 0; i < intY; ++i) {
+            mySpots[k][i] = new SpotNode();
         }
     }
-    for (int k = 1; k < intX+1; ++k) {
-        for (int i = 1; i < intY+1; i+3) {
+
+    for (int k = 0; k < intX; k++) {
+        for (int i = 2; i < intY; i+=3) {
             mySpots[k][i]->setType(1);
         }
     }
-    for (int k = 1; k < intX+1; ++k) {
-        for (int i = 1; i < intY+1; i+4) {
+
+    for (int k = 0; k < intX; k++) {
+        for (int i = 3; i < intY; i+=4) {
             mySpots[k][i]->setType(2);
         }
     }
@@ -124,14 +139,14 @@ int main() {
         } else if ((input == 'l') || (input == 'L')) {
 
             cout << "Total List of Spots:" << endl;
-            cout << "Floor" << "\tSpot #" << "\tOpen" << "\tCar Information" << endl;
-            for (int i = 1; i < 4; ++i) {
-                for (int j = 1; j < 11; ++j) {
+            cout << "Floor" << "\tSpot" << "\tType" << "\tOpen" << "\tCar Information" << endl;
+            for (int i = 0; i < intX; ++i) {
+                for (int j = 0; j < intY; ++j) {
                     if ((mySpots[i][j] == nullptr) || !(mySpots[i][j]->isTaken())) {
-                        cout << i << "\t\t" << j << "\t\tYes" << "\t\tNo Car Parked" << endl;
+                        cout << i << "\t\t" << j << "\t\t" << mySpots[i][j]->getType() << "\t\tYes" << "\t\tNo Car Parked" << endl;
                     } else {
                         string carInfo = mySpots[i][j]->getCarInfo();
-                        cout << i << "\t\t" << j << "\t\tNo" << "\t\t" << carInfo << endl;
+                        cout << i << "\t\t" << j << "\t\t" << mySpots[i][j]->getType() << "\t\tNo" << "\t\t" << carInfo << endl;
                     }
                 }
             }
@@ -142,7 +157,7 @@ int main() {
             cout << "Please enter your name: " << endl;
             string name;
             cin >> name;
-            cout <<"Please enter the type of vehicle you are parking: 0. Car 1.Motorcycle 2.Truck"<<endl;
+            cout <<"Please enter the type of vehicle you are parking - 0: Car 1: Motorcycle 2: Truck"<<endl;
             int type;
             cin >> type;
             cout << "Please enter the make of your car: " << endl;
@@ -167,17 +182,17 @@ int main() {
             }
             cout << myCar->toString() << endl;
 
-            for (int i = 1; i < 4; ++i) {
-                for (int j = 1; j < 11; ++j) {
+            for (int i = 0; i < intX; ++i) {
+                for (int j = 0; j < intY; ++j) {
                     if ((mySpots[i][j] == nullptr) || !(mySpots[i][j]->isTaken())) {
                         SpotNode* node = new SpotNode();
                         mySpots[i][j] = node;
                         mySpots[i][j]->checkinCar(myCar, 0, resvTime);
-                        cout << "Your ticket number is " << i << j << ". Please dont forget it, or we'll have to tow your car!"
+                        cout << "Your ticket number is " << i << j << ". Please don't forget it, or we'll have to tow your car!"
                              << endl;
                         printOptions();
-                        i = 3;
-                        j = 10;
+                        i = intX;
+                        j = intY;
                     }
                 }
             }
@@ -193,7 +208,7 @@ int main() {
 
             int first = number % 10;
             int second = number / 10 % 10;
-            if (mySpots[first][second] != nullptr) {
+            if (mySpots[first][second]->isTaken()) {
                 mySpots[first][second]->checkoutCar(name);
                 printOptions();
             } else {
@@ -212,7 +227,10 @@ int main() {
         else if(input=='b' || input== 'B'){
             logIn(notAvailableList, availableList);
         }
-
+        else if ((input == 'w') || (input == 'W')) {
+            towList->printOut();
+            printOptions();
+        }
         else {
             cout << "Please select a valid option! " << endl;
             printOptions();

@@ -12,7 +12,7 @@ TowNode(){
 void TowNode:: setCar(CarNode* carToAdd){
     car = carToAdd;
 }
-void TowNode:: setNext(CarNode* nextCar){
+void TowNode:: setNext(TowNode* nextCar){
     next = nextCar;
 }
 TowNode* TowNode::getNext() {
@@ -22,7 +22,7 @@ std::string getName(CarNode* thisCar){
     return thisCar->getOwner();
 }
 std::string getMake(CarNode* thisCar){
-    return thisCar.
+    return thisCar->getMake();
 }
 void TowNode:: to_String(){
     car->printInfo();

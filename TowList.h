@@ -16,7 +16,7 @@ public:
     TowList();
     void add(CarNode* car);
     void remove(std:: string name, int spot);
-    void printOut(CarNode* frontOfList);
+    void printOut();
 };
 
 

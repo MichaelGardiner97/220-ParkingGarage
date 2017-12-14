@@ -16,7 +16,7 @@ public:
     TowNode();
     void setCar(CarNode* carToAdd);
     TowNode* getNext();
-    void setNext(CarNode* nextCar);
+    void setNext(TowNode* nextCar);
     std::string getName(CarNode* thisCar);
     std::string getMake(CarNode* thisCar);
     void to_String();

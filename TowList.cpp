@@ -7,15 +7,18 @@
 
 TowList(){
 
+
 }
 void TowList:: add(CarNode* car){
+    TowNode* newNode = new TowNode();
     if(front== nullptr){
-        front->setCar(car);
-        end->setCar(car);
+        front = newNode;
+        newNode->setCar(car);
+        end = newNode;
     }
     else{
-        end->setNext(car);
-        end->setCar(car);
+        end = newNode;
+        newNode->setCar(car);
     }
 }
 void TowList:: remove(std:: string name, std::string make){
@@ -45,7 +48,7 @@ void TowList:: remove(std:: string name, std::string make){
         std::cout << "Please make sure spelling is correct and try again" << std::endl;
     }
 }
-void TowList:: printOut(CarNode* frontOfList){
+void TowList:: printOut(){
     TowNode* current = front;
     std::cout<<"Towed Car List"<<std::endl;
     while(current != nullptr){

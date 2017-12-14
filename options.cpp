@@ -83,10 +83,10 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
             if (loggedIn == true) {
                 avail->add(current);
                 notAvail->remove(iD);
-
             }
         }
     }
+    printOptions();
 }
 
 void managerLogin(WorkerList* avail, WorkerList* notAvail) {
@@ -149,6 +149,7 @@ void managerLogin(WorkerList* avail, WorkerList* notAvail) {
             notAvail->toString();
         }
     }
+    printOptions();
 }
 
 

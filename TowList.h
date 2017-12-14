@@ -15,7 +15,7 @@ class TowList {
 public:
     TowList();
     void add(CarNode* car);
-    void remove(std:: string name, int spot);
+    void remove(std:: string name, string make);
     void printOut();
 };
 

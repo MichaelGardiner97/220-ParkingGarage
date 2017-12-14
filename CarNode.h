@@ -18,7 +18,7 @@ private:
     float ResvEnd;
     int type;
 public:
-    CarNode(string ownerIn, string makeIn, string modelIn, string yearIn);
+    CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn);
     CarNode(const CarNode& carToCopy);
     CarNode& operator=(const CarNode& carToCopy);
     float getResvStart();

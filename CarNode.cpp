@@ -28,7 +28,15 @@ CarNode::CarNode(const CarNode &carToCopy) {
 }
 
 string CarNode::toString() {
-    string returnStr = "Owner: " + owner + " - Type: " + type + " - Make: " + make + " - Model: " + model + " - Year: " + year;
+    string carType;
+    if (type == 0) {
+        carType = "car";
+    } else if (type == 1) {
+        carType = "motorcycle";
+    } else {
+        carType = "truck";
+    }
+    string returnStr = "Owner: " + owner + " - Type: " + carType + " - Make: " + make + " - Model: " + model + " - Year: " + year;
     return returnStr;
 }
 
@@ -70,6 +78,7 @@ float CarNode::getResvStart() {
 float CarNode::getResvEnd() {
     return ResvEnd;
 }
-int getCarType(){
-    return
+
+int CarNode::getCarType(){
+    return type;
 }

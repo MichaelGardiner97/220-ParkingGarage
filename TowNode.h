@@ -20,7 +20,7 @@ public:
     std::string getName(CarNode* thisCar);
     std::string getMake(CarNode* thisCar);
     void to_String();
-
+    CarNode* getCar();
 };
 
 

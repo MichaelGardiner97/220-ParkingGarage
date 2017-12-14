@@ -5,9 +5,9 @@
 #include "TowList.h"
 
 
-TowList(){
-
-
+TowList::TowList(){
+    front = nullptr;
+    end = nullptr;
 }
 void TowList:: add(CarNode* car){
     TowNode* newNode = new TowNode();
@@ -21,11 +21,12 @@ void TowList:: add(CarNode* car){
         newNode->setCar(car);
     }
 }
-void TowList:: remove(std:: string name, std::string make){
+
+void TowList::remove(std:: string name, std::string make){
     TowNode* current = front;
     TowNode* pastPointer = nullptr;
     while(current!= nullptr){
-        if(current->getName() == name && current->getMake() == make){
+        if(current->getCar()->getOwner() == name && current->getCar()->getMake() == make){
            if(pastPointer == nullptr){
                delete front;
                front = nullptr;
@@ -52,8 +53,8 @@ void TowList:: printOut(){
     TowNode* current = front;
     std::cout<<"Towed Car List"<<std::endl;
     while(current != nullptr){
-        current->to_String();
-        std::endl;
+        current->getCar()->toString();
+        cout << endl;
         current = current->getNext();
     }
     std::cout<<"End of List"<<std::endl;

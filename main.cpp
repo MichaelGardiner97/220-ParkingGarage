@@ -1,27 +1,108 @@
-#include <iostream>
-#include <string>
+#include <fstream>
 #include <sstream>
+#include <string>
+#include <iostream>
 #include "CarNode.h"
 #include "SpotNode.h"
 #include "options.h"
+#include "WorkerList.h"
+#include "WorkerNode.h"
 using namespace std;
 
+// Check input type to avoid crashes
+
+// Tow List and Implementations
 // Clean out cars we need to get towed
-// Allow worker to "finish job" themselves
-// Check current working workers and check car info of the car they are parking / checking out
-// Taken spots with car info when printing out the spots
+
+void readFile(string* name, string* id, string* pw, string* x, string* y, WorkerList* availableList) {
+
+    int lineCount = 0;
+    int workerCount = 0;
+
+    ifstream infile("database.txt");
+    string returnLine;
+
+    bool gotToSpots = false;
+    if (infile.is_open()){
+
+        while(getline(infile, returnLine)) {
+
+            if (returnLine == "~~") {
+                gotToSpots = true;
+            } else {
+                if (!gotToSpots) {
+                    if (lineCount == 0) {
+                        *name = returnLine;
+                        lineCount++;
+                    } else if (lineCount == 1) {
+                        *id = returnLine;
+                        lineCount++;
+                    } else if (lineCount == 2) {
+                        *pw = returnLine;
+                        lineCount++;
+                    } else {
+                        WorkerNode* worker = new WorkerNode(*name, *id, *pw);
+                        availableList->add(worker);
+                        workerCount++;
+                        lineCount = 0;
+                    }
+                } else {
+                    cout << "skipping over workers" << endl;
+                }
+            }
+            if (gotToSpots) {
+                if (lineCount == 0) {
+                    lineCount++;
+                }
+                else if (lineCount == 1) {
+                    *x = returnLine;
+                    lineCount++;
+                }
+                else if (lineCount == 2){
+                    *y = returnLine;
+                    lineCount++;
+                }
+            }
+        }
+        infile.close();
+        cout << "file closed" << endl;
+    }
+    else {
+        std::cerr << "File not found." << std::endl;
+    }
+}
 
 int main() {
 
+    WorkerList* availableList = new WorkerList();
+    WorkerList* notAvailableList;
 
+    string name;
+    string id;
+    string pw;
 
-    std::cout << std::endl;
-    std::cout << "Welcome to the Super Parking Garage!" << std::endl;
-    printOptions();
-    SpotNode* mySpots[3][10];
-    for (int k = 1; k < 4; ++k) {
-        for (int i = 1; i < 11; ++i) {
+    string x;
+    string y;
+
+    readFile(&name, &id, &pw, &x, &y, availableList);
+
+    int intX = stoi(x);
+    int intY = stoi(y);
+
+    SpotNode* mySpots[intX][intY];
+    for (int k = 1; k < intX+1; ++k) {
+        for (int i = 1; i < intY+1; ++i) {
             mySpots[k][i] = nullptr;
+        }
+    }
+    for (int k = 1; k < intX+1; ++k) {
+        for (int i = 1; i < intY+1; i+3) {
+            mySpots[k][i]->setType(1);
+        }
+    }
+    for (int k = 1; k < intX+1; ++k) {
+        for (int i = 1; i < intY+1; i+4) {
+            mySpots[k][i]->setType(2);
         }
     }
 
@@ -80,22 +161,12 @@ int main() {
             int resvTime;
             cin >> resvTime;
 
-            CarNode* myCar = new CarNode(name, make, model, year);
+            CarNode* myCar = new CarNode(name, make, model, year, type);
             if (charge == 'Y' || charge == 'y') {
                 myCar->setIsCharged();
             }
-            myCar.setType(type);
             cout << myCar->toString() << endl;
 
-
-            /*
-            cout << "Please enter the floor you would like to park your car: " << endl;
-            int floor;
-            cin >> floor;
-            cout << "Please enter the space you would like to park your car: " << endl;
-            int space;
-            cin >> space;
-            */
             for (int i = 1; i < 4; ++i) {
                 for (int j = 1; j < 11; ++j) {
                     if ((mySpots[i][j] == nullptr) || !(mySpots[i][j]->isTaken())) {
@@ -136,7 +207,7 @@ int main() {
 
         }
         else if(input== 'm' ||input == 'M'){
-            managerLogin(availabeList, notAvailableList);
+            managerLogin(availableList, notAvailableList);
         }
         else if(input=='b' || input== 'B'){
             logIn(notAvailableList, availableList);
@@ -146,7 +217,6 @@ int main() {
             cout << "Please select a valid option! " << endl;
             printOptions();
         }
-
     }
     return 0;
 }

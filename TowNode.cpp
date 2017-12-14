@@ -3,9 +3,9 @@
 //
 
 #include "TowNode.h"
+#include "CarNode.h"
 
-
-TowNode(){
+TowNode::TowNode(){
     car = nullptr;
     next = nullptr;
 }
@@ -17,6 +17,9 @@ void TowNode:: setNext(TowNode* nextCar){
 }
 TowNode* TowNode::getNext() {
     return next;
+}
+CarNode* TowNode::getCar() {
+    return car;
 }
 std::string getName(CarNode* thisCar){
     return thisCar->getOwner();

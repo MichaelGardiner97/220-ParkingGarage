@@ -40,17 +40,11 @@ void WorkerNode::carCheckOut(CarNode* carIn) {
     car = carIn;
 
 }
+
 std::string WorkerNode::getPass(){
     return password;
 }
+
 std::string WorkerNode::getWorkerName(){
     return name;
 }
-
-/*void WorkerNode::returnToClient(CarNode* carIn) {
-    std::cout<<carIn.printInfo()<<std::endl;
-    available = true;
-    delete car;
-    car = nullptr;
-    next = nullptr;
-}*/

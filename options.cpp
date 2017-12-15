@@ -38,7 +38,7 @@ void checkOption(std::string input){
 
 void logIn(WorkerList* notAvail, WorkerList* avail) {
     if (notAvail == nullptr) {
-        throw std::out_of_range("There is no worker currently on a job");
+        cout<<("There is no worker currently on a job")<< endl;
     } else {
         std::string iD;
         std::string pass;
@@ -47,7 +47,6 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
         std::cout << "Please enter your Worker ID: " << std::endl;
         std::cin >> iD;
         WorkerNode *current = notAvail->getFront();
-        std::cout << iD;
         while (current != nullptr) {
             if (current->getID() == iD) {
                 iDthere = true;
@@ -63,28 +62,26 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
             if (current->getPass() == pass) {
                 loggedIn = true;
             } else {
-                string yesOrNo = "Y";
-
-                while (yesOrNo == "Y" || yesOrNo == "y") {
+                bool again = true;
+                string yesOrNo;
+                while (again) {
                     std::cout << "Password was incorrect. Would you like to try again? (Y/N)" << std::endl;
                     std::cin >> yesOrNo;
-                    if (yesOrNo.length() > 1) {
-                        if (yesOrNo == "N" || yesOrNo == "n") {
-                            loggedIn = false;
-                        } else if (yesOrNo == "Y" || yesOrNo == "y") {
-                            std::cout << "Please enter your Worker Password: " << std::endl;
-                            std::cin >> pass;
-                            if (current->getPass() == pass) {
-                                loggedIn = true;
-                                yesOrNo = 'N';
-                            }
+                    if (yesOrNo == "N" || yesOrNo == "n") {
+                        loggedIn = false;
+                        again=false;
+                    } else if (yesOrNo == "Y" || yesOrNo == "y") {
+                        std::cout << "Please enter your Worker Password: " << std::endl;
+                        std::cin >> pass;
+                        if (current->getPass() == pass) {
+                            loggedIn = true;
+                            again = false;
                         }
-                    } else {
-                        cout << "Please only enter one character (Y or N)" << endl;
+                    }
+                    else{
+                        cout << "Please only enter Y or N" << endl;
                         cin >> yesOrNo;
                     }
-
-
                 }
             }
             if (loggedIn == true) {
@@ -103,60 +100,80 @@ void managerLogin(WorkerList* avail, WorkerList* notAvail) {
     std::string pass;
     std::cout << "Enter your ID: ";
     std::cin >> id;
-    char yesOrNo = 'y';
+    string yesOrNo = "y";
     if (id == "0000") {
         idCorrect = true;
     } else {
-        while (yesOrNo == 'Y' || yesOrNo == 'y') {
+        bool again = true;
+        while (again) {
             std::cout << "That ID is incorrect. Would you like to try again? (Y/N)" << std::endl;
             std::cin >> yesOrNo;
-            if (yesOrNo == 'N' || yesOrNo == 'n') {
-                idCorrect=false;
-            } else if (yesOrNo == 'Y' || yesOrNo == 'y') {
+            if (yesOrNo == "N" || yesOrNo == "n") {
+                idCorrect = false;
+                again = false;
+            } else if (yesOrNo == "Y" || yesOrNo == "y") {
                 std::cout << "Enter your ID: " << std::endl;
-                std::cin >> pass;
-                if (id=="0000") {
+                std::cin >> id;
+                if (id == "0000") {
                     idCorrect = true;
-                    yesOrNo = 'N';
+                    again = false;
                 }
+            } else {
+                cout << "Please only enter Y or N" << endl;
+                cin >> yesOrNo;
             }
         }
     }
-    if(idCorrect){
-        std::cout << "Please enter your Worker Password: " << std::endl;
+    if (idCorrect) {
+        std::cout << "Please enter your Manager Password: ";
         std::cin >> pass;
         if (pass == "0000") {
             loggedIn = true;
         } else {
-            char yesOrNo = 'Y';
-            while (yesOrNo == 'Y' || yesOrNo == 'y') {
+            bool again = true;
+            while (again) {
                 std::cout << "Password was incorrect. Would you like to try again? (Y/N)" << std::endl;
                 std::cin >> yesOrNo;
-                if (yesOrNo == 'N' || yesOrNo == 'n') {
+                if (yesOrNo == "N" || yesOrNo == "n") {
                     loggedIn = false;
-                } else if (yesOrNo == 'Y' || yesOrNo == 'y') {
+                    again = false;
+                } else if (yesOrNo == "Y" || yesOrNo == "y") {
                     std::cout << "Please enter your Worker Password: " << std::endl;
                     std::cin >> pass;
-                    if (pass=="0000") {
+                    if (pass == "0000") {
                         loggedIn = true;
-                        yesOrNo = 'N';
+                        again = false;
                     }
+                } else {
+                    cout << "Please only enter one character (Y or N)" << endl;
+                    cin >> yesOrNo;
                 }
             }
         }
-    }
-    if(loggedIn){
-        char option;
-        std::cout<<"What would like to do? \nA. See available workers?\nB. See workers currently parking/getting a car? ";
-        std::cin>>option;
-        if(option=='A' || option == 'a'){
-            cout << avail->toString() << endl;
+        if (loggedIn) {
+            string option;
+            std::cout
+                    << "What would like to do? \nA. See available workers?\nB. See workers currently parking/getting a car? ";
+            std::cin >> option;
+            bool correct = true;
+            while (correct == true) {
+                if (option == "A" || option == "a") {
+                    cout << avail->toString() << endl;
+                    correct = false;
+                } else if (option == "B" || option == "b") {
+                    cout << notAvail->toString() << endl;
+                    correct = false;
+                } else {
+                    cout << "Please Enter a valid selection" << endl;
+                    std::cout
+                            << "What would like to do? \nA. See available workers?\nB. See workers currently parking/getting a car? "
+                            << endl;
+                    cin >> option;
+                }
+            }
+            printOptions();
         }
-        else if(option=='B' || option == 'b'){
-            cout << notAvail->toString() << endl;
-        }
     }
-    printOptions();
 }
 
 

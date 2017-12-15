@@ -26,14 +26,12 @@ void WorkerList::add(WorkerNode* w1){
 void WorkerList:: remove(std::string Id) {
     if (front->getID() == Id) {
         WorkerNode *temp = front->getNext();
-        delete front;
         front = temp;
     } else {
         while (front->getNext()->getID() != Id) {
             front = front->getNext();
         }
         WorkerNode *temp = front->getNext();
-        delete front;
         front = temp;
     }
 }
@@ -42,9 +40,6 @@ WorkerNode* WorkerList::getFront() {
 }
 
 std::string WorkerList::toString(){
-    if (front == nullptr) {
-        return "No workers in this list";
-    }
     std::string val = "";
     WorkerNode* tempHold = front;
     while(tempHold!=nullptr){

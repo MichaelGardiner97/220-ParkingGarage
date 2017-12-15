@@ -5,14 +5,14 @@
 #include "CarNode.h"
 using namespace std;
 
-CarNode::CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn) {
+CarNode::CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn, string startIn, string endIn) {
     owner = ownerIn;
     make = makeIn;
     model = modelIn;
     year = yearIn;
     IsCharged = false;
-    ResvStart = 0.0;
-    ResvEnd = 0.0;
+    ResvStart = startIn;
+    ResvEnd = endIn;
     type = typeIn;
 }
 

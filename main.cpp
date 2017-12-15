@@ -176,7 +176,15 @@ int main() {
             int resvTime;
             cin >> resvTime;
 
-            CarNode* myCar = new CarNode(name, make, model, year, type);
+            // GET CURRENT DATE AND SET TO START DATE
+            string startDate;
+
+            // ADD resvTime TO CURRENT DATE
+
+            // SET NEW DATE IN RESDATE
+            string resDate;
+
+            CarNode* myCar = new CarNode(name, make, model, year, type, startDate, resDate);
 
 //            int num;
 //            cin >> num;

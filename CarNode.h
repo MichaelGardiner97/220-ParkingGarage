@@ -14,11 +14,11 @@ private:
     string model;
     string year;
     bool IsCharged;
-    float ResvStart;
-    float ResvEnd;
+    string ResvStart;
+    string ResvEnd;
     int type;
 public:
-    CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn);
+    CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn, string startIn, string endIn);
     CarNode(const CarNode& carToCopy);
     CarNode& operator=(const CarNode& carToCopy);
     float getResvStart();

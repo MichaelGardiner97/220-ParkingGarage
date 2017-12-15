@@ -14,13 +14,13 @@ using namespace std;
 
 // Check input type to avoid crashes
 
-// ON START OF PROGRAM checjk eternal clock and go through each spot and move to tow list when necessary
+// ON START OF PROGRAM check eternal clock and go through each spot and move to tow list when necessary
 // Move to tow list function
 // Clean out cars we need to get towed
 
-// Ask Toby about taking out more than first car problem
-
 // Change worker login to just print error instead of throw error
+
+// Ensure worker / manager functions are working
 
 //MAYBE: WAITLIST
 
@@ -177,6 +177,20 @@ int main() {
             cin >> resvTime;
 
             CarNode* myCar = new CarNode(name, make, model, year, type);
+
+//            int num;
+//            cin >> num;
+//
+//            CarNode* myCar;
+//            if (num == 0) {
+//                myCar = new CarNode("Michael", "Subaru", "Forester", "2017", 0);
+//            } else {
+//                myCar = new CarNode("Toby", "Subaru", "Outback", "2002", 0);
+//            }
+//
+//            char charge = 'y';
+//            int resvTime = 3;
+
             if (charge == 'Y' || charge == 'y') {
                 myCar->setIsCharged();
             }
@@ -203,13 +217,17 @@ int main() {
             string name;
             cin >> name;
             cout << "Please enter your ticket number: " << endl;
-            int number;
+            string number;
             cin >> number;
+            if (number.length() > 2) {
+                cout << "Please only enter a two-digit ticket number!" << endl;
+                cin >> number;
+            }
+            int floor = number[0] - '0';
+            int spot = number[1] - '0';
 
-            int first = number % 10;
-            int second = number / 10 % 10;
-            if (mySpots[first][second]->isTaken()) {
-                mySpots[first][second]->checkoutCar(name);
+            if (mySpots[floor][spot]->isTaken()) {
+                mySpots[floor][spot]->checkoutCar(name);
                 printOptions();
             } else {
                 cout << "There is no car parked here, please check the tow list" << endl;

@@ -63,20 +63,28 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
             if (current->getPass() == pass) {
                 loggedIn = true;
             } else {
-                char yesOrNo = 'Y';
-                while (yesOrNo == 'Y' || yesOrNo == 'y') {
+                string yesOrNo = "Y";
+
+                while (yesOrNo == "Y" || yesOrNo == "y") {
                     std::cout << "Password was incorrect. Would you like to try again? (Y/N)" << std::endl;
                     std::cin >> yesOrNo;
-                    if (yesOrNo == 'N' || yesOrNo == 'n') {
-                        loggedIn = false;
-                    } else if (yesOrNo == 'Y' || yesOrNo == 'y') {
-                        std::cout << "Please enter your Worker Password: " << std::endl;
-                        std::cin >> pass;
-                        if (current->getPass() == pass) {
-                            loggedIn = true;
-                            yesOrNo = 'N';
+                    if (yesOrNo.length() > 1) {
+                        if (yesOrNo == "N" || yesOrNo == "n") {
+                            loggedIn = false;
+                        } else if (yesOrNo == "Y" || yesOrNo == "y") {
+                            std::cout << "Please enter your Worker Password: " << std::endl;
+                            std::cin >> pass;
+                            if (current->getPass() == pass) {
+                                loggedIn = true;
+                                yesOrNo = 'N';
+                            }
                         }
+                    } else {
+                        cout << "Please only enter one character (Y or N)" << endl;
+                        cin >> yesOrNo;
                     }
+
+
                 }
             }
             if (loggedIn == true) {

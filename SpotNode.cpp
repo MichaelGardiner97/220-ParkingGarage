@@ -11,6 +11,10 @@ SpotNode::SpotNode() {
     vehicle = nullptr;
 }
 
+CarNode* SpotNode::getCar(){
+    return vehicle;
+}
+
 void SpotNode::checkoutCar(string name){
 
     string currentOwner = vehicle->getOwner();
@@ -53,4 +57,11 @@ void SpotNode::setType(int type){
 
 int SpotNode::getType() {
     return vehicleType;
+}
+
+void SpotNode::setCar(CarNode* car){
+    vehicle = car;
+}
+void SpotNode::empty(){
+    taken = false;
 }

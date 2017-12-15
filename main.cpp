@@ -9,6 +9,7 @@
 #include "WorkerNode.h"
 #include "TowNode.h"
 #include "TowList.h"
+#include <ctime>
 
 using namespace std;
 
@@ -82,7 +83,19 @@ void readFile(string* name, string* id, string* pw, string* x, string* y, Worker
     }
 }
 
+
 int main() {
+
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int thisYear = ltm->tm_year;
+    int month = ltm->tm_mon;
+    int day = ltm->tm_mday;
+    std::string yearString = std::to_string(thisYear);
+    std::string  monthString= std::to_string(month);
+    std::string  dayString= std::to_string(day);
+
+    std::string startDate = monthString + dayString + yearString;
 
     WorkerList* availableList = new WorkerList();
     WorkerList* notAvailableList = new WorkerList();
@@ -121,6 +134,20 @@ int main() {
         }
     }
 
+    //Checking cars to tow
+        for(int i =0;i<3;i++){
+            for(int y;y<10;i++){
+                CarNode* vehicle = mySpots[i][y]->getCar();
+                if(vehicle != nullptr){
+                    if(vehicle->getResvEnd()<startDate) {
+                        towList->add(vehicle);
+                        mySpots[i][y]->empty();
+                        mySpots[i][y]->setCar(nullptr);
+                }
+            }
+
+        }
+    }
     std::cout << std::endl;
     std::cout << "Welcome to the Super Parking Garage!" << std::endl;
     printOptions();
@@ -177,14 +204,32 @@ int main() {
             cin >> resvTime;
 
             // GET CURRENT DATE AND SET TO START DATE
-            string startDate;
 
             // ADD resvTime TO CURRENT DATE
 
+            if(day+resvTime>31){
+                if(month+1>12){
+                    thisYear = thisYear+1;
+                    month =1;
+                    day = day+resvTime-31;
+                }
+                else{
+                    month = month+1;
+                    day = day+resvTime-31;
+                }
+
+            }
+            else{
+                day = day+resvTime;
+            }
+            yearString = std::to_string(thisYear);
+            monthString= std::to_string(month);
+            dayString= std::to_string(day);
+            std::string resDate = monthString + dayString + yearString;
             // SET NEW DATE IN RESDATE
-            string resDate;
 
             CarNode* myCar = new CarNode(name, make, model, year, type, startDate, resDate);
+
 
 //            int num;
 //            cin >> num;

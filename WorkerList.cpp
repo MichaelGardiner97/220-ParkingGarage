@@ -28,11 +28,13 @@ void WorkerList:: remove(std::string Id) {
         WorkerNode *temp = front->getNext();
         front = temp;
     } else {
-        while (front->getNext()->getID() != Id) {
-            front = front->getNext();
-        }
         WorkerNode *temp = front->getNext();
-        front = temp;
+        WorkerNode *before = front;
+        while (temp->getNext()->getID() != Id) {
+            temp = temp->getNext();
+            before=before->getNext();
+        }
+        before->setNext(temp->getNext());
     }
 }
 WorkerNode* WorkerList::getFront() {

@@ -22,13 +22,11 @@ public:
     SpotNode();
     CarNode* getCar();
     void checkoutCar(string name);
-    //does all the checks
-    void checkinCar(CarNode* Car, int type, int resvTime);
-    //moves pointer to car
+    void checkinCar(int resvTime);
     string getCarInfo();
     bool isTaken();
     void setType(int type);
     int getType();
     void setCar(CarNode* car);
-    void empty();
+    void makeFree();
 };

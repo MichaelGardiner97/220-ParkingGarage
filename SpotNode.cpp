@@ -28,11 +28,9 @@ void SpotNode::checkoutCar(string name){
     }
 }
 
-void SpotNode::checkinCar(CarNode* car, int type, int resvTime) {
+void SpotNode::checkinCar(int resvTime) {
     if (taken == false) {
-        vehicle = car;
         taken = true;
-        vehicleType = type;
         cout << "Your car has been parked! Feel free to checkout your car anytime over the next " << resvTime << " days." << endl;
     } else {
         cout << "This spot is taken! Please choose another spot" << endl;
@@ -62,6 +60,6 @@ int SpotNode::getType() {
 void SpotNode::setCar(CarNode* car){
     vehicle = car;
 }
-void SpotNode::empty(){
+void SpotNode::makeFree(){
     taken = false;
 }

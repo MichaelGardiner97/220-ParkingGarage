@@ -3,7 +3,6 @@
 //
 #include <iostream>
 #include "options.h"
-#include "SpotNode.h"
 #include <string>
 #include <sstream>
 #include "CarNode.h"
@@ -14,26 +13,6 @@ void printOptions() {
     cout << endl;
     cout << "List of commands: \n" << "H: Help Menu\n" << "P: Park Vehicle\n" << "T: Check Out Vehicle\n" << "D: Exit The Program\n" << "B: Worker Login\n" << "L: List of Spots\n" << "W: Check Tow List\n" << "M: Manager Login\n" << "~~~~~~~~~~~~~~~~~~\n" << "R: Make Reservation (In progress)\n" << "C: Check Reservation (In progress)\n" << endl;
     cout << "Please make your selection below:" << endl;
-}
-
-void checkOption(std::string input){
-    const std::string commands [] ={"D","d","H","h","L","R","r","P","p","T","t","B","b","C","c","W","w"};
-    bool isThere = false;
-    for(int i = 0; i<18; i++){
-        if(input == commands[i]){
-            isThere=true;
-        }
-    }
-    while(isThere == false){
-        std::cout<<"Please select a valid option! "<<std::endl;
-
-        isThere = false;
-        for(int i = 0; i<18; i++){
-            if(input == commands[i]){
-                isThere=true;
-            }
-        }
-    }
 }
 
 void logIn(WorkerList* notAvail, WorkerList* avail) {
@@ -85,8 +64,13 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
                 }
             }
             if (loggedIn == true) {
+
+                current->finishJob();
+
                 avail->add(current);
+                //cout << avail->toString() << endl;
                 notAvail->remove(iD);
+                //cout << notAvail->toString() << endl;
             }
         }
     }

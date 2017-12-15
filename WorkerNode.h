@@ -7,6 +7,7 @@
 
 #include "iostream"
 #include "CarNode.h"
+#include "SpotNode.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ private:
     WorkerNode* next;
     std::string ID;
     string password;
+    SpotNode* spot;
 
 public:
 
@@ -28,11 +30,10 @@ public:
     std::string getID();
     std::string getPass();
     void setNext(WorkerNode* nextWorker);
-    void setCar(CarNode* newCar);
-    void carCheckOut(CarNode* carIn);
+    void carCheckIn(CarNode* carIn, SpotNode* spotIn);
     void returnToClient(CarNode* carIn);
     std::string getWorkerName();
-
+    void finishJob();
 };
 
 #endif //TEST_WORKERNODE_H

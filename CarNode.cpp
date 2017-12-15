@@ -71,11 +71,11 @@ void CarNode::setResvEnd(float end) {
     ResvEnd = end;
 }
 
-float CarNode::getResvStart() {
+string CarNode::getResvStart() {
     return ResvStart;
 }
 
-float CarNode::getResvEnd() {
+string CarNode::getResvEnd() {
     return ResvEnd;
 }
 

@@ -31,14 +31,18 @@ std::string WorkerNode::getID() {
     return ID;
 }
 
-void WorkerNode::setCar(CarNode* newCar) {
-    car = newCar;
-}
-
-void WorkerNode::carCheckOut(CarNode* carIn) {
+void WorkerNode::carCheckIn(CarNode* carIn, SpotNode* spotIn) {
     available = false;
     car = carIn;
+    spot = spotIn;
+}
 
+void WorkerNode::finishJob() {
+    cout << "finishing job" << endl;
+    spot->setCar(car);
+    car = nullptr;
+    available = true;
+    spot = nullptr;
 }
 
 std::string WorkerNode::getPass(){

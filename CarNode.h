@@ -21,8 +21,8 @@ public:
     CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn, string startIn, string endIn);
     CarNode(const CarNode& carToCopy);
     CarNode& operator=(const CarNode& carToCopy);
-    float getResvStart();
-    float getResvEnd();
+    string getResvStart();
+    string getResvEnd();
     std::string getOwner();
     std::string getMake();
     int getCarType();

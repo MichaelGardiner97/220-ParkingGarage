@@ -64,7 +64,8 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
                 }
             }
             if (loggedIn == true) {
-                updateLists(current,avail,notAvail);
+                avail->add(current);
+                notAvail->remove(current->getID());
             }
         }
     }
@@ -154,16 +155,6 @@ void managerLogin(WorkerList* avail, WorkerList* notAvail) {
     }
 }
 
-void updateLists(WorkerNode* worker, WorkerList* avail, WorkerList* notAvail){
-    if(worker->getAvailability() == true){
-        avail->add(worker);
-        notAvail->remove(worker->getID());
-    }
-    else{
-        notAvail->add(worker);
-        avail->remove(worker->getID());
-    }
-}
 
 
 

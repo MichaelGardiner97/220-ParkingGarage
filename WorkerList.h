@@ -2,9 +2,10 @@
 // Created by srabb on 12/6/2017.
 //
 #include "WorkerNode.h"
+#include "List.h"
 #ifndef INC_220_PARKINGGARAGE_MASTER_AVAILABLEWORKERLIST_H
 #define INC_220_PARKINGGARAGE_MASTER_AVAILABLEWORKERLIST_H
-class WorkerList{
+class WorkerList: public list{
 private:
     WorkerNode* front;
     WorkerNode* end;

@@ -25,16 +25,25 @@ void WorkerList::add(WorkerNode* w1){
 
 void WorkerList:: remove(std::string Id) {
     if (front->getID() == Id) {
-        WorkerNode *temp = front->getNext();
-        front = temp;
+        if(front==end) {
+            WorkerNode *temp = front->getNext();
+            front = temp;
+        }
+        else{
+            WorkerNode *temp = front->getNext();
+            front->setNext(nullptr);
+            front=temp;
+
+        }
     } else {
-        WorkerNode *temp = front->getNext();
-        WorkerNode *before = front;
-        while (temp->getNext()->getID() != Id) {
-            temp = temp->getNext();
+        WorkerNode *afterToRemove = front->getNext();
+        WorkerNode *before =front;
+        while (afterToRemove->getNext()->getID() != Id) {
+            afterToRemove = afterToRemove->getNext();
             before=before->getNext();
         }
-        before->setNext(temp->getNext());
+        afterToRemove=afterToRemove->getNext();
+        before->setNext(afterToRemove->getNext());
     }
 }
 WorkerNode* WorkerList::getFront() {

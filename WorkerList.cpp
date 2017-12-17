@@ -42,14 +42,22 @@ WorkerNode* WorkerList::getFront() {
 }
 
 std::string WorkerList::toString(){
-    std::string val = "";
-    WorkerNode* tempHold = front;
-    while(tempHold!=nullptr){
-        val+=tempHold->getWorkerName();
-        if(tempHold->getNext()!=nullptr){
-            val+=", ";
+    
+    if (front == nullptr) {
+        
+        return "There are no workers currently in this list";
+    
+    } else {
+        
+        std::string val = "";
+        WorkerNode* tempHold = front;
+        while(tempHold!=nullptr){
+            val+=tempHold->getWorkerName();
+            if(tempHold->getNext()!=nullptr){
+                val+=", ";
+            }
+            tempHold=tempHold->getNext();
         }
-        tempHold=tempHold->getNext();
+        return val;
     }
-    return val;
 }

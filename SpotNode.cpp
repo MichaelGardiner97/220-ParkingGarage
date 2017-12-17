@@ -28,17 +28,12 @@ void SpotNode::checkoutCar(string name){
     }
 }
 
-void SpotNode::checkinCar(int resvTime) {
+void SpotNode::checkinCar() {
     if (taken == false) {
         taken = true;
-        cout << "Your car has been parked! Feel free to checkout your car anytime over the next " << resvTime << " days." << endl;
     } else {
         cout << "This spot is taken! Please choose another spot" << endl;
     }
-}
-
-string SpotNode::getCarInfo() {
-    return vehicle->toString();
 }
 
 bool SpotNode::isTaken() {

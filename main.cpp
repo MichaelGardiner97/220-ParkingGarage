@@ -13,7 +13,13 @@ using namespace std;
 // FILE INPUT TO UPLOAD THE SPOTS AND CARS IF THERE ARE ANY PARKED CARS
 // FILE INPUT / OUTPUT FOR THE TOW LIST
 
-//MAYBE: WAITLIST
+// WAITLIST
+
+// TOWLIST
+
+// Abstract Data Types - Spot List could just be a garage, and then implemented as linked list, arraylist, etc.
+// List of workers could be linked list, arraylist, etc.
+
 
 void readFile(string* name, string* id, string* pw, string* x, string* y, WorkerList* availableList) {
 
@@ -47,8 +53,6 @@ void readFile(string* name, string* id, string* pw, string* x, string* y, Worker
                         workerCount++;
                         lineCount = 0;
                     }
-                } else {
-                    cout << "skipping over workers" << endl;
                 }
             }
             if (gotToSpots) {
@@ -66,7 +70,6 @@ void readFile(string* name, string* id, string* pw, string* x, string* y, Worker
             }
         }
         infile.close();
-        cout << "file closed" << endl;
     }
     else {
         std::cerr << "File not found." << std::endl;
@@ -104,8 +107,6 @@ int main() {
     string y;
 
     readFile(&name, &id, &pw, &x, &y, availableList);
-
-    cout << availableList->toString() << endl;
 
     int intX = stoi(x);
     int intY = stoi(y);
@@ -306,26 +307,33 @@ int main() {
             }
             cout << newCar->toString() << endl;
 
+            SpotNode* node = new SpotNode();
+            int x, y;
+
             for (int i = 0; i < intX; ++i) {
                 for (int j = 0; j < intY; ++j) {
                     if ((mySpots[i][j] == nullptr) || !(mySpots[i][j]->isTaken())) {
-                        SpotNode* node = new SpotNode();
-                        mySpots[i][j] = node;
-                        mySpots[i][j]->checkinCar(resvTime);
-
-                        WorkerNode* worker = availableList->getFront();
-                        worker->carCheckIn(newCar, mySpots[i][j]);
-                        notAvailableList->add(worker);
-                        availableList->remove(worker->getID());
-
-                        cout << "Your ticket number is " << i << j << ". Please don't forget it, or we'll have to tow your car!"
-                             << endl;
-                        printOptions();
+                        node = mySpots[i][j];
+                        x = i;
+                        y = j;
+                        // End for-loop
                         i = intX;
                         j = intY;
                     }
                 }
             }
+
+            node->checkinCar();
+
+            WorkerNode* worker = availableList->getFront();
+            worker->carCheckIn(newCar, node);
+            notAvailableList->add(worker);
+            availableList->remove(worker->getID());
+
+            cout << worker->getWorkerName() << " is parking your car!" << endl;
+            cout << "Your ticket number is " << x << y << ". Please don't forget it, or we'll have to tow your car!"
+                 << endl;
+            printOptions();
 
         } else if ((input == "t") || (input == "T")) {
 

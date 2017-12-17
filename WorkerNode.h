@@ -34,6 +34,7 @@ public:
     void returnToClient(CarNode* carIn);
     std::string getWorkerName();
     void finishJob();
+    bool getAvailability();
 };
 
 #endif //TEST_WORKERNODE_H

@@ -22,8 +22,7 @@ public:
     SpotNode();
     CarNode* getCar();
     void checkoutCar(string name);
-    void checkinCar(int resvTime);
-    string getCarInfo();
+    void checkinCar();
     bool isTaken();
     void setType(int type);
     int getType();

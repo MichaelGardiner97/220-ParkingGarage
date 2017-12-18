@@ -14,6 +14,7 @@ CarNode::CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, i
     ResvStart = startIn;
     ResvEnd = endIn;
     type = typeIn;
+    next = nullptr;
 }
 
 CarNode::CarNode(const CarNode &carToCopy) {
@@ -82,3 +83,22 @@ string CarNode::getResvEnd() {
 int CarNode::getCarType(){
     return type;
 }
+std::string CarNode::getModel(){
+    return model;
+}
+std::string CarNode::getYear(){
+    return year;
+}
+std::string CarNode::getStart(){
+    return ResvStart;
+}
+std::string CarNode::getEnd(){
+    return ResvEnd;
+}
+void CarNode::setNext(CarNode* car) {
+    next=car;
+}
+CarNode* CarNode::getNext(){
+    return next;
+}
+void CarNode::addToWaitlist(){}

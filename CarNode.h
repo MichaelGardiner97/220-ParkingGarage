@@ -17,6 +17,7 @@ private:
     string ResvStart;
     string ResvEnd;
     int type;
+    CarNode* next;
 public:
     CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn, string startIn, string endIn);
     CarNode(const CarNode& carToCopy);
@@ -25,6 +26,10 @@ public:
     string getResvEnd();
     std::string getOwner();
     std::string getMake();
+    std::string getModel();
+    std::string getYear();
+    std::string getStart();
+    std::string getEnd();
     int getCarType();
     bool getIsCharged();
     void setIsCharged();
@@ -32,6 +37,9 @@ public:
     void setResvEnd(float end);
     string toString();
     void printInfo();
+    void addToWaitlist();
+    void setNext(CarNode* car);
+    CarNode* getNext();
 };
 
 #endif //PARKINGGARAGE_CAR_H

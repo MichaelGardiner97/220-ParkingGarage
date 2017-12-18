@@ -17,6 +17,7 @@ public:
     void add(CarNode* car);
     void remove(std:: string name, string make);
     void printOut();
+    void checkForCar(std::string name);
 };
 
 

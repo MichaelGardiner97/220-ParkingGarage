@@ -16,6 +16,8 @@ WorkerNode::WorkerNode(string nameIn,std::string Id, string pass) {
 WorkerNode::WorkerNode(const WorkerNode& nodeToCopy) {
     name = nodeToCopy.name;
     available = nodeToCopy.available;
+    ID = nodeToCopy.ID;
+    password = nodeToCopy.password;
     car = nullptr;
     next = nullptr;
 }

@@ -28,4 +28,5 @@ public:
     int getType();
     void setCar(CarNode* car);
     void makeFree();
+    void setTaken();
 };

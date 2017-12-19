@@ -29,5 +29,4 @@ std::string getMake(CarNode* thisCar){
 }
 void TowNode:: to_String(){
     car->printInfo();
-
 }

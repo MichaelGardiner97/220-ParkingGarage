@@ -2,7 +2,8 @@
 // Created by srabb on 12/18/2017.
 //
 #include "WaitList.h"
-
+#include "iostream"
+using namespace std;
 
 WaitList::WaitList(){
     front = nullptr;
@@ -24,7 +25,7 @@ WaitList::WaitList(const WaitList& listToCopy){
     else{
         CarNode* nodeToCopy = listToCopy.front;
         front= new CarNode(listToCopy.front->getOwner(),listToCopy.front->getMake(),listToCopy.front->getMake(),listToCopy.front->getYear(),
-        listToCopy.front->getCarType(),listToCopy.front->getStart(),listToCopy.front->getEnd());
+        listToCopy.front->getCarType(),listToCopy.front->getStart(),listToCopy.front->getResvEnd());
         CarNode* nextNode = front;
         nodeToCopy=nodeToCopy->getNext();
         while(nodeToCopy->getNext()!=nullptr){
@@ -75,11 +76,11 @@ std::string WaitList:: toString(){
         return "There are no cars currently in this list";
 
     } else {
-
+        cout << "WaitList: " << endl;
         std::string val = "";
         CarNode* tempHold = front;
         while(tempHold!=nullptr){
-            val+=tempHold->getMake()+", "+tempHold->getModel()+", "+tempHold->getYear();
+            val += "Make: " + tempHold->getMake() + ", Model: " + tempHold->getModel()+", Year: "+tempHold->getYear();
             if(tempHold->getNext()!=nullptr){
                 val+=", ";
             }

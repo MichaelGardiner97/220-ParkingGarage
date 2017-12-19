@@ -3,7 +3,7 @@
 //
 
 #include "TowList.h"
-
+#include "options.h"
 
 TowList::TowList(){
     front = nullptr;
@@ -26,28 +26,26 @@ void TowList:: add(CarNode* car){
 void TowList::remove(std:: string name, std::string make){
     TowNode* current = front;
     TowNode* pastPointer = nullptr;
-    while(current!= nullptr){
-        if(current->getCar()->getOwner() == name && current->getCar()->getMake() == make){
+    TowNode* tmp = front;
+    while (current != nullptr){
+        if (current->getCar()->getOwner() == name && current->getCar()->getMake() == make){
            if(pastPointer == nullptr){
+               tmp = front->getNext();
                delete front;
-               front = nullptr;
-               std::cout<<"Your car has been removed"<<std::endl;
+               front = tmp;
+               tmp = nullptr;
+               current = nullptr;
            }
-            else {
+           else {
                pastPointer->setNext(current->getNext());
                delete current;
                current = nullptr;
-               std::cout<<"Your car has been removed"<<std::endl;
            }
         }
         else{
             pastPointer = current;
             current = current->getNext();
         }
-    }
-    if(current == nullptr) {
-        std::cout << "We could not find that specific Owner and Make pairing in out list of towed cars." << std::endl;
-        std::cout << "Please make sure spelling is correct and try again" << std::endl;
     }
 }
 void TowList:: printOut(){
@@ -69,43 +67,61 @@ void TowList::checkForCar(std::string name){
     }
     else{
         TowNode* current = front;
-        bool found = false;
+        bool accepted = false;
         while(current!= nullptr){
             if(current->getCar()->getOwner() == name){
-                std::cout<<"We recently towed a car under '" +name+"':";std::endl;
+                std::cout<<"We recently towed a car under '" << name << "':" << std::endl;
                 current->getCar()->printInfo();
-                found = true;
                 string ans = "Q";
                 std::cout<<"is this your car? (Y/N)"<<std::endl;
                 cin >> ans;
-                while(ans != "Y" || ans!= "N"){
-                    std::cout<< "You must enter either a 'Y' or 'N'"<<std::endl;
-                    cin >> ans;
+
+                bool correct = false;
+                if (ans == "n" || ans == "N" || ans == "y" || ans == "Y") {
+                    correct = true;
                 }
-                if(ans=="Y"){
+                while (!correct) {
+                    cout << "Please enter a valid option (Y or N)" << endl;
+                    cin >> ans;
+                    if (ans == "n" || ans == "N" || ans == "y" || ans == "Y") {
+                        correct = true;
+                    }
+                }
+
+                if(ans == "Y" || ans == "y"){
                     std::cout<<"Would you like to take your car out of the Tow List right now? (Y/N)"<<std::endl;
                     cin >> ans;
-                    while(ans != "Y" || ans!= "N") {
-                        std::cout << "You must enter either a 'Y' or 'N'" << std::endl;
-                        cin >> ans;
+                    correct = false;
+                    if (ans == "n" || ans == "N" || ans == "y" || ans == "Y") {
+                        correct = true;
                     }
-                    if(ans=="Y"){
+                    while (!correct) {
+                        cout << "Please enter a valid option (Y or N)" << endl;
+                        cin >> ans;
+                        if (ans == "n" || ans == "N" || ans == "y" || ans == "Y") {
+                            correct = true;
+                        }
+                    }
+                    if(ans == "Y" || ans == "y"){
                         remove(name,current->getCar()->getMake());
                         std::cout<<"Your car has been removed and will arrive shortly"<<std::endl;
+                        accepted = true;
+                        break;
                     }
                     else{
                         std::cout<<"You car can be removed using our main interface whenever you like. Have a nice day"<<std::endl;
+                        accepted = true;
+                        break;
                     }
                 }
             }
             current = current->getNext();
         }
-        if(found == true){
+        if(accepted == false){
             std::cout<<"If your car is not listed above, please contact the manager of the parking garage"<<std::endl;
+            printOptions();
+        } else {
+            printOptions();
         }
-        else{
-            std::cout<<"We have not towed a car under that name. Please try again or contact the manager of the parking garage"<<std::endl;
-        }
-
     }
 }

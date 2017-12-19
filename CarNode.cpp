@@ -56,24 +56,8 @@ std::string CarNode::getMake() {
     return make;
 }
 
-bool CarNode::getIsCharged() {
-    return IsCharged;
-}
-
 void CarNode::setIsCharged() {
     IsCharged = true;
-}
-
-void CarNode::setResvStart(float start) {
-    ResvStart = start;
-}
-
-void CarNode::setResvEnd(float end) {
-    ResvEnd = end;
-}
-
-string CarNode::getResvStart() {
-    return ResvStart;
 }
 
 string CarNode::getResvEnd() {
@@ -92,13 +76,9 @@ std::string CarNode::getYear(){
 std::string CarNode::getStart(){
     return ResvStart;
 }
-std::string CarNode::getEnd(){
-    return ResvEnd;
-}
 void CarNode::setNext(CarNode* car) {
     next=car;
 }
 CarNode* CarNode::getNext(){
     return next;
 }
-void CarNode::addToWaitlist(){}

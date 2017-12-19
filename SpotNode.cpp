@@ -55,6 +55,11 @@ int SpotNode::getType() {
 void SpotNode::setCar(CarNode* car){
     vehicle = car;
 }
-void SpotNode::makeFree(){
+
+void SpotNode::makeFree() {
     taken = false;
+}
+
+void SpotNode::setTaken() {
+    taken = true;
 }

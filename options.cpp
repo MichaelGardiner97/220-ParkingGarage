@@ -11,7 +11,7 @@ using namespace std;
 
 void printOptions() {
     cout << endl;
-    cout << "List of commands: \n" << "H: Help Menu\n" << "P: Park Vehicle\n" << "T: Check Out Vehicle\n" << "D: Exit The Program\n" << "B: Worker Login\n" << "L: List of Spots\n" << "W: Check Tow List\n" << "M: Manager Login\n" << "~~~~~~~~~~~~~~~~~~\n" << "R: Make Reservation (In progress)\n" << "C: Check Reservation (In progress)\n" << endl;
+    cout << "List of commands: \n" << "H: Help Menu\n" << "P: Park Vehicle\n" << "T: Check Out Vehicle\n" << "D: Exit The Program\n" << "B: Worker Login\n" << "L: List of Spots\n" << "C: Check Tow List\n" << "R: Remove From Tow List\n" << "W: Check Waitlist\n" << "M: Manager Login\n" << "~~~~~~~~~~~~~~~~~~\n" << endl;
     cout << "Please make your selection below:" << endl;
 }
 

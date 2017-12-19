@@ -14,6 +14,9 @@ int main(){
     WorkerList* notAvailable = new WorkerList();
     WaitList* waitList = new WaitList();
 
+    SpotNode* newSpot = new SpotNode();
+    newSpot->setType(0);
+
     WorkerNode* w1 = new WorkerNode("Worker 1","0001","01Worker1");
     WorkerNode* w2 = new WorkerNode("Worker 2","0002","02Worker1");
     WorkerNode* w3 = new WorkerNode("Worker 3","0003","03Worker1");
@@ -31,6 +34,7 @@ int main(){
     available->add(w4);
     notAvailable->add(w1);
     available->remove(w1->getID());
+    w1->carCheckIn(car1,newSpot);
     std::cout<<"Should be one worker in this list: \n"<<notAvailable->toString()<<std::endl;
     logIn(notAvailable,available);
     std::cout<<"Should be no Workers in this list now]n"<<notAvailable->toString()<<std::endl;
@@ -59,3 +63,4 @@ int main(){
 
     return 0;
 }
+

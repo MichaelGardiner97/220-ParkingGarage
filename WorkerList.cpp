@@ -8,8 +8,29 @@ WorkerList::WorkerList(){
     end = nullptr;
 }
 
-WorkerList::WorkerList(const WorkerList &listToCopy) {}
-WorkerList::~WorkerList() {}
+WorkerList::WorkerList(const WorkerList &listToCopy) {
+    if(listToCopy.front==nullptr){
+        front=nullptr;
+    }
+    else{
+        WorkerNode* nodeToCopy = listToCopy.front;
+        front= new WorkerNode(nodeToCopy->getWorkerName(),nodeToCopy->getID(),nodeToCopy->getPass());
+        WorkerNode* nextNode = front;
+        nodeToCopy=nodeToCopy->getNext();
+        while(nodeToCopy->getNext()!=nullptr){
+            nextNode->setNext(nodeToCopy);
+            nextNode=nodeToCopy;
+            nodeToCopy=nodeToCopy->getNext();
+        }
+    }
+}
+WorkerList::~WorkerList() {
+    if(front!=nullptr){
+        WorkerNode* nodeToDelete = front;
+        front=front->getNext();
+        delete nodeToDelete;
+    }
+}
 
 void WorkerList::add(WorkerNode* w1){
     if(front==nullptr){

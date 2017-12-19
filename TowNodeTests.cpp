@@ -20,23 +20,11 @@ void Towtests(){
     tow1->setNext(tow2);
     tow2->setNext(tow3);
 
-    std::cout<<"Testing setCar & to_string"<<std::endl;
-    if(tow1->to_String() == car1->printInfo()){
-        std::cout<<"Pass"<<std::endl;}
-    else{
-        std::cout<<"Fail"<<std::endl;
-    }
-    if(tow2->to_String() == car2->printInfo()){
-        std::cout<<"Pass"<<std::endl;}
-    else{
-        std::cout<<"Fail"<<std::endl;
-    }
-    if(tow3->to_String() == car3->printInfo()){
-        std::cout<<"Pass"<<std::endl;}
-    else{
-        std::cout<<"Fail"<<std::endl;
-    }
-
+    std::cout<<"Testing setCar & to_String"<<std::endl;
+    std::cout<<"printing Tow Info:"<<std::endl;
+    tow1->to_String();
+    std::cout<<"printing Car Info:"<<std::endl;
+    car1->printInfo();
     std::cout<<std::endl;
 
     std::cout<<"Testing setNext & getNext"<<std::endl;

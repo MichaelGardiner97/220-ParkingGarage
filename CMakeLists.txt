@@ -3,5 +3,5 @@ project(Final_Project)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp WorkerNode.cpp CarNode.cpp SpotNode.cpp options.cpp WorkerList.cpp TowList.cpp TowNode.cpp WaitList.cpp list2.h)
+set(SOURCE_FILES main.cpp WorkerNode.cpp CarNode.cpp SpotNode.cpp options.cpp WorkerList.cpp TowList.cpp TowNode.cpp WaitList.cpp list2.h List.h)
 add_executable(Test ${SOURCE_FILES})

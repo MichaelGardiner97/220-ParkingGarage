@@ -64,6 +64,7 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
                 }
             }
             if (loggedIn == true) {
+                current->finishJob();
                 avail->add(current);
                 notAvail->remove(current->getID());
             }

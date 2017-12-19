@@ -10,12 +10,6 @@
 
 using namespace std;
 
-// FILE OUTPUT TO SAVE ANY CHANGES
-
-// WAITLIST - After a car is taken out, check to see if anyone is on the waitlist
-
-// TOWLIST - Letting them remove from the towlist
-
 void readGarage(string* x, string* y) {
 
     int lineCount = 1;
@@ -179,6 +173,7 @@ int main() {
                 lineCount = 1;
             }
         }
+        infile.close();
     }
 
     //Checking cars to tow
@@ -230,133 +225,131 @@ int main() {
 
         } else if ((input == "p") || (input == "P")) {
 
-//            cout << "Please enter your name: " << endl;
-//            string name;
-//            cin >> name;
-//            cout << "Please enter the type of vehicle you are parking: 0-Car 1-Motorcycle 2-Truck"<<endl;
-//            string type;
-//            cin >> type;
-//
-//
-//            bool correct = false;
-//            if (type == "0" || type == "1" || type == "2") {
-//                correct = true;
-//            }
-//            while (!correct) {
-//                cout << "Please enter a valid option - 0: Car 1: Motorcycle 2: Truck" << endl;
-//                cin >> type;
-//                if (type == "0" || type == "1" || type == "2") {
-//                    correct = true;
-//                }
-//            }
-//            int carType = type[0] - '0';
-//
-//            cout << "Please enter the make of your car: " << endl;
-//            string make;
-//            cin >> make;
-//            cout << "Please enter the model of your car: " << endl;
-//            string model;
-//            cin >> model;
-//            cout << "Please enter the year of your car: " << endl;
-//            string year;
-//            cin >> year;
-//
-//            correct = false;
-//
-//            if (is_number(year)) {
-//                if (year.length() == 4) {
-//                    correct = true;
-//                }
-//            }
-//
-//            while (!correct) {
-//                cout << "Please enter a valid year" << endl;
-//                cin >> year;
-//                if (is_number(year)) {
-//                    if (year.length() == 4) {
-//                        correct = true;
-//                    }
-//                }
-//            }
-//
-//            cout << "(If Applicable) Do you want to charge your car (Y or N): " << endl;
-//            string userCharge;
-//            cin >> userCharge;
-//
-//            correct = false;
-//            if (userCharge == "n" || userCharge == "N" || userCharge == "y" || userCharge == "Y") {
-//                correct = true;
-//            }
-//            while (!correct) {
-//                cout << "Please enter a valid option (Y or N)" << endl;
-//                cin >> userCharge;
-//                if (userCharge == "n" || userCharge == "N" || userCharge == "y" || userCharge == "Y") {
-//                    correct = true;
-//                }
-//            }
-//            char charge = userCharge[0];
-//
-//            cout << "Please enter how many days you would like to reserve your car for: " << endl;
-//            string resTime;
-//            cin >> resTime;
-//
-//            int resvTime;
-//            correct = false;
-//
-//            if (is_number(resTime)) {
-//
-//                if (resTime.length() == 1) {
-//                    resvTime = resTime[0] - '0';
-//                    correct = true;
-//                } else if (resTime.length() == 2) {
-//                    resvTime = (resTime[0] - '0') * 10 + (resTime[1] - '0');
-//                    correct = true;
-//                }
-//            }
-//
-//            while (!correct) {
-//                cout << "Please enter a valid number of days (1 to 14)" << endl;
-//                cin >> resTime;
-//                if (is_number(resTime)) {
-//
-//                    if (resTime.length() == 1) {
-//                        resvTime = resTime[0] - '0';
-//                        correct = true;
-//                    } else if (resTime.length() == 2) {
-//                        resvTime = (resTime[0] - '0') * 10 + (resTime[1] - '0');
-//                        correct = true;
-//                    }
-//                }
-//            }
-//
-//            if(day+resvTime>31){
-//                if(month+1>12){
-//                    thisYear = thisYear+1;
-//                    month =1;
-//                    day = day+resvTime-31;
-//                }
-//                else{
-//                    month = month+1;
-//                    day = day+resvTime-31;
-//                }
-//
-//            }
-//            else{
-//                day = day+resvTime;
-//            }
-//            yearString = std::to_string(thisYear);
-//            monthString= std::to_string(month);
-//            dayString= std::to_string(day);
-//            std::string resDate = monthString + dayString + yearString;
-//
-//            CarNode* newCar = new CarNode(name, make, model, year, carType, startDate, resDate);
-//
-//            if (charge == 'Y' || charge == 'y') {
-//                newCar->setIsCharged();
-//            }
-//            cout << newCar->toString() << endl;
+            cout << "Please enter your name: " << endl;
+            string name;
+            cin >> name;
+            cout << "Please enter the type of vehicle you are parking: 0-Car 1-Motorcycle 2-Truck"<<endl;
+            string type;
+            cin >> type;
 
-            CarNode* newCar = new CarNode("Michael", "make", "model", "2017", 0, "start", "end");
+
+            bool correct = false;
+            if (type == "0" || type == "1" || type == "2") {
+                correct = true;
+            }
+            while (!correct) {
+                cout << "Please enter a valid option - 0: Car 1: Motorcycle 2: Truck" << endl;
+                cin >> type;
+                if (type == "0" || type == "1" || type == "2") {
+                    correct = true;
+                }
+            }
+            int carType = type[0] - '0';
+
+            cout << "Please enter the make of your car: " << endl;
+            string make;
+            cin >> make;
+            cout << "Please enter the model of your car: " << endl;
+            string model;
+            cin >> model;
+            cout << "Please enter the year of your car: " << endl;
+            string year;
+            cin >> year;
+
+            correct = false;
+
+            if (is_number(year)) {
+                if (year.length() == 4) {
+                    correct = true;
+                }
+            }
+
+            while (!correct) {
+                cout << "Please enter a valid year" << endl;
+                cin >> year;
+                if (is_number(year)) {
+                    if (year.length() == 4) {
+                        correct = true;
+                    }
+                }
+            }
+
+            cout << "(If Applicable) Do you want to charge your car (Y or N): " << endl;
+            string userCharge;
+            cin >> userCharge;
+
+            correct = false;
+            if (userCharge == "n" || userCharge == "N" || userCharge == "y" || userCharge == "Y") {
+                correct = true;
+            }
+            while (!correct) {
+                cout << "Please enter a valid option (Y or N)" << endl;
+                cin >> userCharge;
+                if (userCharge == "n" || userCharge == "N" || userCharge == "y" || userCharge == "Y") {
+                    correct = true;
+                }
+            }
+            char charge = userCharge[0];
+
+            cout << "Please enter how many days you would like to reserve your car for: " << endl;
+            string resTime;
+            cin >> resTime;
+
+            int resvTime;
+            correct = false;
+
+            if (is_number(resTime)) {
+
+                if (resTime.length() == 1) {
+                    resvTime = resTime[0] - '0';
+                    correct = true;
+                } else if (resTime.length() == 2) {
+                    resvTime = (resTime[0] - '0') * 10 + (resTime[1] - '0');
+                    correct = true;
+                }
+            }
+
+            while (!correct) {
+                cout << "Please enter a valid number of days (1 to 14)" << endl;
+                cin >> resTime;
+                if (is_number(resTime)) {
+
+                    if (resTime.length() == 1) {
+                        resvTime = resTime[0] - '0';
+                        correct = true;
+                    } else if (resTime.length() == 2) {
+                        resvTime = (resTime[0] - '0') * 10 + (resTime[1] - '0');
+                        correct = true;
+                    }
+                }
+            }
+
+            if(day+resvTime>31){
+                if(month+1>12){
+                    thisYear = thisYear+1;
+                    month =1;
+                    day = day+resvTime-31;
+                }
+                else{
+                    month = month+1;
+                    day = day+resvTime-31;
+                }
+
+            }
+            else{
+                day = day+resvTime;
+            }
+            yearString = std::to_string(thisYear);
+            monthString= std::to_string(month);
+            dayString= std::to_string(day);
+            std::string resDate = monthString + dayString + yearString;
+
+            CarNode* newCar = new CarNode(name, make, model, year, carType, startDate, resDate);
+
+            if (charge == 'Y' || charge == 'y') {
+                newCar->setIsCharged();
+            }
+            cout << newCar->toString() << endl;
 
             SpotNode* node = new SpotNode();
             int x, y;
@@ -371,21 +364,23 @@ int main() {
                         y = j;
                         node->checkinCar();
 
-                        WorkerNode* worker = availableList->getFront();
-                        worker->carCheckIn(newCar, node);
-                        notAvailableList->add(worker);
-                        availableList->remove(worker->getID());
-
-                        cout << worker->getWorkerName() << " is parking your car!" << endl;
-                        cout << "Your ticket number is " << x << y << ". Please don't forget it, or we'll have to tow your car!"
-                             << endl;
-                        printOptions();
                         // End for-loop
                         i = intX;
                         j = intY;
                     }
                 }
             }
+
+            WorkerNode* worker = availableList->getFront();
+            worker->carCheckIn(newCar, node);
+            notAvailableList->add(worker);
+            availableList->remove(worker->getID());
+
+            cout << worker->getWorkerName() << " is parking your car!" << endl;
+            cout << "Your ticket number is " << x << y << ". Please don't forget it, or we'll have to tow your car!"
+                 << endl;
+            printOptions();
+
             if (!parked) {
                 waitList->add(newCar);
                 cout << "Your car has been added to the waitlist. When a spot opens up, we will automatically park your car." << endl;
@@ -436,47 +431,49 @@ int main() {
 
         } else if ((input == "d") || (input == "D")) {
 
+            if (notAvailableList->getFront() != nullptr) {
+                WorkerNode* current = notAvailableList->getFront();
+                while (current != nullptr) {
+                    cout << current->getID() << endl;
+                    current->finishJob();
+                    availableList->add(current);
+                    notAvailableList->remove(current->getID());
+                    current = notAvailableList->getFront();
+                }
+            }
+
             for (int i = 0; i < intX; ++i) {
                 for (int j = 0; j < intY; ++j) {
-
                     if (mySpots[i][j]->isTaken()) {
-                        cout << "found taken spot" << endl;
-
                         string x = to_string(i);
                         string y = to_string(j);
                         string spot = x + y;
-                        cout << spot << endl;
                         CarNode* vehicle = mySpots[i][j]->getCar();
 
                         string name = vehicle->getOwner();
-                        cout << name << endl;
-//                        string make = vehicle->getMake();
-//                        cout << make << endl;
-//                        string model = vehicle->getModel();
-//                        cout << model << endl;
-//                        string year = vehicle->getYear();
-//                        cout << year << endl;
-//                        int type = vehicle->getCarType();
-//                        string carType = to_string(type);
-//                        cout << carType << endl;
-//                        string start = vehicle->getStart();
-//                        cout << start << endl;
-//                        string end = vehicle->getResvEnd();
-//                        cout << end << endl;
-//
-//                        string output = spot + "\n";
-//                        output += name + "\n";
-//                        output += make + "\n";
-//                        output += model + "\n";
-//                        output += year + "\n";
-//                        output += carType + "\n";
-//                        output += start + "\n";
-//                        output += end + "\n";
-//
-//                        ofstream myFile;
-//                        myFile.open("TakenSpots.txt");
-//                        myFile << output;
-//                        myFile.close();
+                        string make = vehicle->getMake();
+                        string model = vehicle->getModel();
+                        string year = vehicle->getYear();
+                        int type = vehicle->getCarType();
+                        string carType = to_string(type);
+                        string start = vehicle->getStart();
+                        string end = vehicle->getResvEnd();
+
+                        string output = spot + "\n";
+                        output += name + "\n";
+                        output += make + "\n";
+                        output += model + "\n";
+                        output += year + "\n";
+                        output += carType + "\n";
+                        output += start + "\n";
+                        output += end + "\n";
+
+                        ofstream myFile;
+                        myFile.open("TakenSpots.txt");
+                        cout << "SAVING DATABASE..." << endl;
+                        myFile << output;
+                        myFile.close();
+                        cout << "DATABASE SAVED" << endl;
                     }
                 }
             }

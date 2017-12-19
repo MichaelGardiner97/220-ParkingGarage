@@ -30,11 +30,9 @@ public:
     std::string getID();
     std::string getPass();
     void setNext(WorkerNode* nextWorker);
-    void carCheckIn(CarNode* carIn, SpotNode* spotIn);
-    void returnToClient(CarNode* carIn);
-    std::string getWorkerName();
     void finishJob();
-    bool getAvailability();
+    void carCheckIn(CarNode* carIn, SpotNode* spotIn);
+    std::string getWorkerName();
 };
 
 #endif //TEST_WORKERNODE_H

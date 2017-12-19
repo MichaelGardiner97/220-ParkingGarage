@@ -52,11 +52,3 @@ std::string WorkerNode::getPass(){
 std::string WorkerNode::getWorkerName(){
     return name;
 }
-
-bool WorkerNode::getAvailability() {
-    if (available) {
-        return true;
-    } else {
-        return false;
-    }
-}

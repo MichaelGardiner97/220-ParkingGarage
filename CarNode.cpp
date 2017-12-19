@@ -1,5 +1,5 @@
 //
-// Created by srabb on 11/30/2017.
+// Created by Everton Steele on 11/30/2017.
 //
 #include <iostream>
 #include "CarNode.h"
@@ -28,6 +28,9 @@ CarNode::CarNode(const CarNode &carToCopy) {
     type = carToCopy.type;
 }
 
+/*
+ * Returns car information including: owners name, car make, model, type, and year.
+ */
 string CarNode::toString() {
     string carType;
     if (type == 0) {
@@ -41,6 +44,9 @@ string CarNode::toString() {
     return returnStr;
 }
 
+/*
+ * Primnts car information including: owners name, car make, model, type, and year.
+ */
 void CarNode::printInfo() {
     cout << "Owner: " << owner << endl;
     cout << "Type: " << type << endl;
@@ -49,36 +55,52 @@ void CarNode::printInfo() {
     cout << "Year: " << year << endl;
 }
 
+// Returns car owner
 std::string CarNode::getOwner() {
     return owner;
 }
+
+// Returns car make
 std::string CarNode::getMake() {
     return make;
 }
 
+// Sets car to be charged
 void CarNode::setIsCharged() {
     IsCharged = true;
 }
 
+// Returns reservation end date
 string CarNode::getResvEnd() {
     return ResvEnd;
 }
 
+// Returns car type
 int CarNode::getCarType(){
     return type;
 }
+
+// Returns car model
 std::string CarNode::getModel(){
     return model;
 }
+
+// Returns car year
 std::string CarNode::getYear(){
     return year;
 }
+
+// Returns reservation start date
 std::string CarNode::getStart(){
     return ResvStart;
 }
+
+// Sets the next car node
 void CarNode::setNext(CarNode* car) {
     next=car;
 }
+
+// Returns the next car node
 CarNode* CarNode::getNext(){
     return next;
 }

@@ -1,7 +1,6 @@
 //
 // Created by Derek Howes on 12/18/17.
 //
-#include "SpotNode.h"
 #include "iostream"
 
 void spotNodeTests(){
@@ -38,7 +37,8 @@ void spotNodeTests(){
     }
     std::cout<<std::endl;
 
-    std::cout<<"Testing: CheckOutCar & isTaken"<<std::endl;
+    std::cout<<"Testing: CheckOutCar & isTaken & checkInCar"<<std::endl;
+    spot1->checkinCar();
     if(spot1->isTaken()==true){
         std::cout<<"Pass"<<std::endl;
     }

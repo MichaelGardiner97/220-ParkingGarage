@@ -1,5 +1,5 @@
 //
-// Created by srabb on 12/6/2017.
+// Created by Everton Steele on 12/6/2017.
 //
 #include "WorkerList.h"
 
@@ -24,6 +24,7 @@ WorkerList::WorkerList(const WorkerList &listToCopy) {
         }
     }
 }
+
 WorkerList::~WorkerList() {
     if(front!=nullptr){
         WorkerNode* nodeToDelete = front;
@@ -32,7 +33,9 @@ WorkerList::~WorkerList() {
     }
 }
 
+// Adds a worker to the worker list
 void WorkerList::add(WorkerNode* w1){
+    // Set worker to front and end if the list is empty
     if(front==nullptr){
         front=w1;
         end=w1;
@@ -44,6 +47,9 @@ void WorkerList::add(WorkerNode* w1){
 
 }
 
+/*
+ * Remove a worker based off their ID
+ */
 void WorkerList:: remove(std::string Id) {
     if (front->getID() == Id) {
         if(front==end) {
@@ -67,10 +73,13 @@ void WorkerList:: remove(std::string Id) {
         before->setNext(afterToRemove->getNext());
     }
 }
+
+// Return the first worker in the list
 WorkerNode* WorkerList::getFront() {
     return front;
 }
 
+// return a string with a list of the current workers in the WorkerList
 std::string WorkerList::toString(){
 
     if (front == nullptr) {

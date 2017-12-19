@@ -1,5 +1,5 @@
 //
-// Created by srabb on 12/18/2017.
+// Created by Everton Steele on 12/18/2017.
 //
 #include "WaitList.h"
 #include "iostream"
@@ -35,6 +35,8 @@ WaitList::WaitList(const WaitList& listToCopy){
         }
     }
 }
+
+// Adds a car to the end of the wait list
 void WaitList::add(CarNode* c1){
     if(front==nullptr){
         front=c1;
@@ -46,6 +48,7 @@ void WaitList::add(CarNode* c1){
     }
 }
 
+// Removes a car with the owners name from the waitlist
 void WaitList::remove(std::string Id){
     if (front->getOwner() == Id) {
         if(front==end) {
@@ -70,6 +73,7 @@ void WaitList::remove(std::string Id){
     }
 }
 
+// Returns a string with the car information for each car in the waitlist
 std::string WaitList:: toString(){
     if (front == nullptr) {
 
@@ -80,15 +84,14 @@ std::string WaitList:: toString(){
         std::string val = "";
         CarNode* tempHold = front;
         while(tempHold!=nullptr){
-            val += "Make: " + tempHold->getMake() + ", Model: " + tempHold->getModel()+", Year: "+tempHold->getYear();
-            if(tempHold->getNext()!=nullptr){
-                val+=", ";
-            }
+            val += "Make: " + tempHold->getMake() + ", Model: " + tempHold->getModel()+", Year: "+tempHold->getYear() + "\n";
             tempHold=tempHold->getNext();
         }
         return val;
     }
 }
+
+// Returns the front car from the WaitList
 CarNode* WaitList::getFront(){
     return front;
 }

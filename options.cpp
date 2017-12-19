@@ -1,5 +1,5 @@
 //
-// Created by srabb on 12/3/2017.
+// Created by Everton Steele on 12/3/2017.
 //
 #include <iostream>
 #include "options.h"
@@ -15,11 +15,6 @@ void printOptions() {
     cout << "Please make your selection below:" << endl;
 }
 
-/*Parameter: Not Available Worker List and Available Worker List
- *Returns: none
- * This function asks the user to input a user ID and Password. If they are correct it will move the worker from the not available
- * list to the avaible list. Also calls finishjob function that parks the car the worker currently has
- */
 void logIn(WorkerList* notAvail, WorkerList* avail) {
     if (notAvail == nullptr) {
         cout<<("There is no worker currently on a job")<< endl;
@@ -31,7 +26,6 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
         std::cout << "Please enter your Worker ID: " << std::endl;
         std::cin >> iD;
         WorkerNode *current = notAvail->getFront();
-        //checks if ID is there
         while (current != nullptr) {
             if (current->getID() == iD) {
                 iDthere = true;
@@ -49,7 +43,6 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
             } else {
                 bool again = true;
                 string yesOrNo;
-                //if the user wants to try again
                 while (again) {
                     std::cout << "Password was incorrect. Would you like to try again? (Y/N)" << std::endl;
                     std::cin >> yesOrNo;
@@ -70,7 +63,6 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
                     }
                 }
             }
-            //when all the credentials are correct
             if (loggedIn == true) {
                 current->finishJob();
                 avail->add(current);
@@ -80,11 +72,7 @@ void logIn(WorkerList* notAvail, WorkerList* avail) {
     }
     printOptions();
 }
-/*Parameters: Availabale and Not Available Worker Lists
- * Returns: None
- * Prompts the user to log in. If the credentials are correct allow the user to
- * print Available or Not Available Lists
- */
+
 void managerLogin(WorkerList* avail, WorkerList* notAvail) {
     std::string id;
     bool idCorrect;
@@ -97,7 +85,6 @@ void managerLogin(WorkerList* avail, WorkerList* notAvail) {
         idCorrect = true;
     } else {
         bool again = true;
-        //while the user wants to try again
         while (again) {
             std::cout << "That ID is incorrect. Would you like to try again? (Y/N)" << std::endl;
             std::cin >> yesOrNo;
@@ -143,14 +130,12 @@ void managerLogin(WorkerList* avail, WorkerList* notAvail) {
                 }
             }
         }
-        //If all the credentials are correct
         if (loggedIn) {
             string option;
             std::cout
                     << "What would like to do? \nA. See available workers?\nB. See workers currently parking/getting a car? ";
             std::cin >> option;
             bool correct = true;
-            //This prevents the user from crashing the program
             while (correct == true) {
                 if (option == "A" || option == "a") {
                     cout << avail->toString() << endl;

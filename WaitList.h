@@ -1,5 +1,5 @@
 //
-// Created by srabb on 12/18/2017.
+// Created by Everton Steele on 12/18/2017.
 //
 
 #ifndef INC_220_PARKINGGARAGE_MASTER_3_WAITLIST_H

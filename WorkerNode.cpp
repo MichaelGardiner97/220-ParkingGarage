@@ -4,61 +4,47 @@
 
 #include "WorkerNode.h"
 
-WorkerNode::WorkerNode(string nameIn,std::string Id, string pass) {
-    name = nameIn;
-    ID = Id;
-    password = pass;
-    available = true;
-    car = nullptr;
-    next = nullptr;
+WorkerNode::WorkerNode(string name) {
+    /*
+     * initialize worker node with name and sets available to true
+     */
 }
 
 WorkerNode::WorkerNode(const WorkerNode& nodeToCopy) {
-    name = nodeToCopy.name;
-    ID = nodeToCopy.ID;
-    password = nodeToCopy.password;
-    available = nodeToCopy.available;
-    car = nullptr;
-    next = nullptr;
+    /*
+     * copies worker from total list to currentWorkers list
+     */
 }
 
-// Return the next workernode
+WorkerNode::~WorkerNode() {
+    /*
+     * setting current car node to nullptr
+     */
+}
+
 WorkerNode* WorkerNode::getNext() {
-    return next;
+    /*
+     * return the next worker node
+     */
+    return nullptr;
 }
 
-// Set the next worker pointer
 void WorkerNode::setNext(WorkerNode* nextWorker) {
-    next = nextWorker;
+    /*
+     * set the next worker node in the linkedlist
+     */
 }
 
-// Return a string with the ID
-std::string WorkerNode::getID() {
-    return ID;
+void WorkerNode::setCar(CarNode* car) {
+    /*
+     * call spot node checkIn function with car
+     */
 }
 
-// Give worker a job to check in the car
-void WorkerNode::carCheckIn(CarNode* carIn, SpotNode* spotIn) {
-    available = false;
-    car = carIn;
-    spot = spotIn;
+void WorkerNode::carCheckOut(string name, string spot) {
+    // Call spot node checkCar function
 }
 
-// Allow worker to finish their job
-void WorkerNode::finishJob() {
-    cout << "finishing job" << endl;
-    spot->setCar(car);
-    car = nullptr;
-    available = true;
-    spot = nullptr;
-}
-
-// Return a string containing the worker's password
-std::string WorkerNode::getPass(){
-    return password;
-}
-
-// Return a string containing the worker's name
-std::string WorkerNode::getWorkerName(){
-    return name;
+CarNode* WorkerNode::returnToClient(CarNode* carToReturn) {
+    // Give client the car, then delete
 }

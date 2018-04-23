@@ -9,24 +9,17 @@
 
 #include "iostream"
 #include "CarNode.h"
-using namespace std;
 
 class SpotNode{
 private:
     int vehicleType;
-    string position;
+    std::string postion;
     bool taken;
     CarNode* vehicle;
 
 public:
-    SpotNode();
-    CarNode* getCar();
-    void checkoutCar(string name);
-    void checkinCar();
-    bool isTaken();
-    void setType(int type);
-    int getType();
-    void setCar(CarNode* car);
-    void makeFree();
-    void setTaken();
+    void checkoutCar(std::string name);
+    //does all the checks
+    void checkinCar(CarNode* Car);
+    //moves pointer to car
 };

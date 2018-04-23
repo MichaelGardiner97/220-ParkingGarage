@@ -1,39 +1,39 @@
 //
-// Created by Everton Steele on 11/28/2017.
+// Created by srabb on 11/28/2017.
 //
 
 #ifndef PARKINGGARAGE_CAR_H
 #define PARKINGGARAGE_CAR_H
 #include <string>
-using namespace std;
 
 class CarNode {
 private:
-    string owner;
-    string make;
-    string model;
-    string year;
+    std::string owner;
+    std::string make;
+    std::string model;
+    int year;
+    bool IsCharging;
     bool IsCharged;
-    string ResvStart;
-    string ResvEnd;
-    int type;
-    CarNode* next;
+    float ResvStart;
+    float ResvEnd;
 public:
-    CarNode(string ownerIn, string makeIn, string modelIn, string yearIn, int typeIn, string startIn, string endIn);
+    CarNode(std::string ownerIn,std::string makeIn, std::string modelIn, int yearIn);
     CarNode(const CarNode& carToCopy);
     CarNode& operator=(const CarNode& carToCopy);
-    string getResvEnd();
+    ~CarNode();
+    float getResvStart();
+    float getResvEnd();
     std::string getOwner();
     std::string getMake();
     std::string getModel();
-    std::string getYear();
-    std::string getStart();
-    int getCarType();
+    int getYear();
+    bool getIsCharged();
+    bool getIsCharging();
     void setIsCharged();
-    string toString();
-    void printInfo();
-    void setNext(CarNode* car);
-    CarNode* getNext();
+    void setIsCharging();
+    void setResvEnd();
+    void setResvStart();
+    std::string toString();
 };
 
 #endif //PARKINGGARAGE_CAR_H

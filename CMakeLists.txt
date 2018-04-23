@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
-project(Final_Project)
+project(Test)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp WorkerNode.cpp CarNode.cpp SpotNode.cpp options.cpp WorkerList.cpp TowList.cpp TowNode.cpp WaitList.cpp list2.h List.h)
+set(SOURCE_FILES main.cpp WorkerNode.cpp CarNode.cpp SpotNode.cpp)
 add_executable(Test ${SOURCE_FILES})
